@@ -23,6 +23,11 @@ def index():
     return tpl("index.html")
 
 
+@main_bp.route('/base/', methods=['GET', 'POST'])
+def base_info():
+    return tpl("base_info.html")
+
+
 @main_bp.route('/<item>/', methods=['GET', 'POST'])
 def item_form(item):
     if not item in item_names.keys():
