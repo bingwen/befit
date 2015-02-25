@@ -4,20 +4,20 @@
   <div class="pages">
   	<div class="page">
       <img class="page-bg" src="/static/resources/注册页/背景.png"/>
-      <form>
+      <form method="POST">
           <label>昵称</label>
-          <input class="weixin_name" name="weixin_name" type="text" value="张三"/>
+          <input class="weixin_name" name="weixin_name" type="text" value="{{g.info.weixin_name or ""}}"/>
           <label>性别</label>
           <select class="sex" name="sex">
-            <option value="1">女</option>
-            <option value="2">男</option>
+            <option value="1" {{'selected' if g.info.sex != 2 else ''}}>女</option>
+            <option value="2" {{'selected' if g.info.sex == 2 else ''}}>男</option>
           </select>
           <label>身高</label>
-          <input class="height" name="height" type="number" value="170"/>
+          <input class="height" name="height" type="number" value="{{g.info.height}}"/>
           <label>体重</label>
-          <input class="weight" name="weight" type="number" value="70"/>
+          <input class="weight" name="weight" type="number" value="{{g.info.weight}}"/>
           <label>出生年月</label>
-          <input class="birthday" name="birthday" type="date" value="2000-01-01" min="1970-01-01"/>
+          <input class="birthday" name="birthday" type="date" value="{{g.info.birthday.strftime('%Y-%m-%d') if g.info.birthday else '2000-01-01'}}" min="1970-01-01"/>
       </form>
       <img class="next-btn" src="/static/resources/注册页/注册按钮.png"/>
       <img class="logo" src="/static/resources/注册页/logo.png"/>
@@ -89,6 +89,9 @@ form{
 </style>
 <script>
 $(function(){
+    $(".next-btn").click(function(e){
+        $("form").submit();
+    });
 });
 </script>
 {% endblock %}

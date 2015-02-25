@@ -17,5 +17,4 @@ def get_weixin_user_openid(code):
     response = urllib2.urlopen(token_url)
     html = response.read()
     json_info = json.loads(html)
-    openid = json_info['openid']
-    return openid
+    return json_info.get('openid')

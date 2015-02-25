@@ -30,4 +30,16 @@ class Info(db.Model, BaseModelMixin):
 
     @classmethod
     def get_by_weixin(cls, weixin_id):
-        cls.query.filter_by(weixin_id=weixin_id).first()
+        return cls.query.filter_by(weixin_id=weixin_id).first()
+
+    def is_active(self):
+        return self.weixin_id
+
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return self.weixin_id
+
+    def get_id(self):
+        return self.weixin_id

@@ -1,8 +1,7 @@
 # -*- coding: UTF-8 -*-
-from flask import Blueprint, request, redirect, abort, url_for
-from flask import render_template as tpl, jsonify
-
-from models.info import Info
+import datetime
+from flask import Blueprint, request, abort, url_for, redirect, g
+from flask import render_template as tpl
 
 main_bp = Blueprint('main', __name__, template_folder='../templates/main')
 item_names = {
@@ -25,6 +24,14 @@ def index():
 
 @main_bp.route('/base/', methods=['GET', 'POST'])
 def base_info():
+    if request.method == 'POST':
+        g.info.weixin_name = request.values.get('weixin_name')
+        g.info.sex = int(request.values.get('sex'))
+        g.info.height = int(request.values.get('height'))
+        g.info.weight = int(request.values.get('weight'))
+        g.info.birthday = datetime.datetime.strptime(request.values.get('birthday'), "%Y-%m-%d").date()
+        g.info.save()
+        return redirect(url_for("main.item_form", item='neck'))
     return tpl("base_info.html")
 
 
