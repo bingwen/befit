@@ -1,0 +1,35 @@
+{% extends "/base.html" %}
+
+{% block content %}
+<form>
+  <div class="pages">
+  	<div class="page">
+      <div class="page-head">
+        <img class="page-title" src="/static/resources/{{item_name}}/words.png"/>
+        <img class="head-report" src="/static/resources/颈围/report.png"/>
+        <img class="head-icon" src="/static/resources/颈围/logo.png"/>
+      </div>
+      <div class="page-body">
+        <img class="body-img" src="/static/resources/{{item_name}}/测量图.png"/>
+      </div>
+      <div class="page-desc">
+        <img class="description-words" src="/static/resources/{{item_name}}/description.png"/>
+      </div>
+      <div class="page-foot">
+        <img class="foot-bg" src="/static/resources/颈围/bg.png"/>
+        <input class="foot-slide" type="range" min="0" max="160"/>
+        <img class="foot-left" src="/static/resources/颈围/left.png"/>
+        <img class="foot-right" src="/static/resources/颈围/right.png"/>
+        <p class="foot-num">80</p>
+      </div>
+  	</div>
+  </div>
+</form>
+<script>
+$(function(){
+  $(".foot-slide").on("change mousemove touchmove", function(){
+    $(".foot-num").html($(this).val());
+  });
+});
+</script>
+{% endblock %}

@@ -1,7 +1,4 @@
 #-*- coding: UTF-8 -*-
-import json
-from sqlalchemy.ext.mutable import MutableDict
-
 from . import db, BaseModelMixin
 
 
@@ -9,8 +6,28 @@ class Info(db.Model, BaseModelMixin):
     __tablename__ = 'info'
 
     id = db.Column(db.Integer, primary_key=True)
-    weixin = db.Column(db.String(100))
-    props = db.Column(MutableDict.as_mutable(db.PickleType(pickler=json)), default=None)
+    weixin_id = db.Column(db.String(100))
+    weixin_name = db.Column(db.String(100))
+    weixin_avatar = db.Column(db.String(100))
 
-    def __init__(self, id, weixin):
+    neck = db.Column(db.Integer)
+    shoulder = db.Column(db.Integer)
+    arm_length = db.Column(db.Integer)
+    arm_width = db.Column(db.Integer)
+    chest = db.Column(db.Integer)
+    waist = db.Column(db.Integer)
+    butt = db.Column(db.Integer)
+    leg_width = db.Column(db.Integer)
+    leg_length = db.Column(db.Integer)
+
+    birthday = db.Column(db.Date)
+    sex = db.Column(db.Integer)
+    height = db.Column(db.Integer)
+    weight = db.Column(db.Integer)
+
+    def __init__(self, weixin):
         self.weixin = weixin
+
+    @classmethod
+    def get_by_weixin(cls, weixin_id):
+        cls.query.filter_by(weixin_id=weixin_id).first()
