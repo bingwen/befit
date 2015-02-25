@@ -25,8 +25,8 @@ class Info(db.Model, BaseModelMixin):
     height = db.Column(db.Integer)
     weight = db.Column(db.Integer)
 
-    def __init__(self, weixin):
-        self.weixin = weixin
+    def __init__(self, weixin_id):
+        self.weixin_id = weixin_id
 
     @classmethod
     def get_by_weixin(cls, weixin_id):
