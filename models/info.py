@@ -28,6 +28,10 @@ class Info(db.Model, BaseModelMixin):
     def __init__(self, weixin_id):
         self.weixin_id = weixin_id
 
+    @property
+    def sex_name(self):
+        return u"女" if self.sex == 1 else u"男"
+
     @classmethod
     def get_by_weixin(cls, weixin_id):
         return cls.query.filter_by(weixin_id=weixin_id).first()

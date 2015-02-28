@@ -12,9 +12,9 @@
             <option value="1" {{'selected' if g.info.sex != 2 else ''}}>女</option>
             <option value="2" {{'selected' if g.info.sex == 2 else ''}}>男</option>
           </select>
-          <label>身高</label>
+          <label>身高cm</label>
           <input class="height" name="height" type="number" value="{{g.info.height}}"/>
-          <label>体重</label>
+          <label>体重kg</label>
           <input class="weight" name="weight" type="number" value="{{g.info.weight}}"/>
           <label>出生年月</label>
           <input class="birthday" name="birthday" type="date" value="{{g.info.birthday.strftime('%Y-%m-%d') if g.info.birthday else '2000-01-01'}}" min="1970-01-01"/>

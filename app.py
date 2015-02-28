@@ -27,23 +27,26 @@ def request_user():
     if current_user and current_user.is_authenticated():
         g.info = current_user
     else:
-        code = request.values.get('code')
-        if code:
-            from models.info import Info
-            from libs.weixin import get_weixin_user_openid
-            openid = get_weixin_user_openid(code)
-            if openid:
-                info = Info.get_by_weixin(openid)
-                if not info:
-                    info = Info.add(openid)
-                login_user(info)
-                g.info = info
-            else:
-                return u"微信登录失败啦"
+        if request.path.startswith(u'/m/u/') or request.path.startswith(u'/static/'):
+            pass
         else:
-            from libs.weixin import get_weixin_login_url
-            login_url = get_weixin_login_url(request.url)
-            return redirect(login_url)
+            code = request.values.get('code')
+            if code:
+                from models.info import Info
+                from libs.weixin import get_weixin_user_openid
+                openid = get_weixin_user_openid(code)
+                if openid:
+                    info = Info.get_by_weixin(openid)
+                    if not info:
+                        info = Info.add(openid)
+                    login_user(info)
+                    g.info = info
+                else:
+                    return u"微信登录失败啦"
+            else:
+                from libs.weixin import get_weixin_login_url
+                login_url = get_weixin_login_url(request.url)
+                return redirect(login_url)
 
 
 @app.route('/')

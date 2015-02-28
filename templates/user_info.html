@@ -1,0 +1,177 @@
+{% extends "/base.html" %}
+
+{% block content %}
+<form method="POST">
+  <div class="pages">
+  	<div class="page">
+      <div class="page-head">
+        <img class="head-share" src="/static/resources/身材表/飞机.png"/>
+        <img class="head-icon" src="/static/resources/颈围/logo.png"/>
+      </div>
+      <div class="page-content">
+          <div class="item-box" style="background:#FC6622;">
+              <span class="item-title">昵称</span>
+              <span class="item-value">{{info.weixin_name}}</span>
+          </div>
+          <div class="item-box" style="background:#FC6622;">
+              <span class="item-title">性别</span>
+              <span class="item-value">{{info.sex_name}}</span>
+          </div>
+           <div class="item-box" style="background:#FC6622;">
+              <span class="item-title">身高</span>
+              <span class="item-value">{{info.height}}</span>
+          </div>
+           <div class="item-box" style="background:#97040C;">
+              <span class="item-title">体重</span>
+              <span class="item-value">{{info.weight}}</span>
+          </div>
+           <div class="item-box" style="background:#97040C;">
+               <span class="item-title">颈围</span>
+              <span class="item-value">{{info.neck}}</span>
+          </div>
+           <div class="item-box" style="background:#B01C10;">
+              <span class="item-title">胸围</span>
+              <span class="item-value">{{info.chest}}</span>
+          </div>
+           <div class="item-box" style="background:#CA3415;">
+              <span class="item-title">腰围</span>
+              <span class="item-value">{{info.waist}}</span>
+          </div>
+           <div class="item-box" style="background:#E34D1B;">
+              <span class="item-title">臀围</span>
+              <span class="item-value">{{info.butt}}</span>
+          </div>
+           <div class="item-box" style="background:#FC6621;">
+              <span class="item-title">腿围</span>
+              <span class="item-value"{{info.leg_width}}></span>
+          </div>
+           <div class="item-box" style="background:#FD7F2D;">
+              <span class="item-title">腿长</span>
+              <span class="item-value">{{info.leg_length}}</span>
+          </div>
+           <div class="item-box" style="background:#FD9840;">
+              <span class="item-title">臂围</span>
+              <span class="item-value">{{info.arm_width}}</span>
+          </div>
+           <div class="item-box" style="background:#FDB156;">
+              <span class="item-title">臂长</span>
+              <span class="item-value">{{info.arm_length}}</span>
+          </div>
+           <div class="item-box" style="background:#FECB6E;">
+              <span class="item-title">肩宽</span>
+              <span class="item-value">{{info.shoulder}}</span>
+          </div>
+      </div>
+      <div class="page-foot">
+        <img class="foot-left" src="/static/resources/颈围/left.png"/>
+        <img class="foot-right" src="/static/resources/颈围/right.png"/>
+        <img class="foot-jietu" src="/static/resources/身材表/截屏键.png"/>
+      </div>
+  	</div>
+  </div>
+</form>
+<style>
+.page{
+  background-image: url("/static/resources/身材表/背景.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.page-head{
+  display: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 102, 0, 0.5);
+}
+.page-content{
+  width: 46%;
+  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+}
+.item-box{
+  margin-top: 2px;
+  color: white;
+  line-height: 20px;
+  font-size: 18px;
+  font-weight: lighter;
+}
+.item-title{
+    width: 30%;
+    padding: 2px;
+    margin-left: 10%;
+    text-align: justify;
+    display: inline-block;
+}
+.item-value{
+    width: 30%;
+    padding: 3px;
+    margin-left: 10%;
+    text-align: center;
+    display: inline-block;
+}
+.page-foot{
+  width: 100%;
+  margin-top: 10%;
+  background: transparent;
+}
+.head-icon{
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  width: 32px;
+  margin-top: 2px;
+}
+.head-share{
+  position: absolute;
+  right: 4%;
+  height: 16px;
+  margin-top: 2px;
+}
+.body-img{
+  width: 100%;
+}
+.foot-left, .foot-right{
+  display: block;
+  width: 6%;
+  margin-top: 3%;
+}
+.foot-left{
+  float: left;
+  margin-left: 15%;
+}
+.foot-right{
+  float: right;
+  margin-right: 15%;
+}
+.foot-jietu{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+  width: 20%;
+  z-index: 20;
+}
+</style>
+<script src="/static/js/html2canvas.min.js"></script>
+<script src="/static/js/canvas-toBlob.js"></script>
+<script src="/static/js/FileSaver.min.js"></script>
+<script>
+$(function(){
+  var blob;
+   html2canvas(document.body, {
+      onrendered: function(canvas) {
+        canvas.toBlob(function(_blob) {
+            blob = _blob;
+        });
+      }
+  });
+
+  $(".foot-jietu").click(function(e){
+    saveAs(blob, "body9.png");
+  });
+});
+</script>
+{% endblock %}
