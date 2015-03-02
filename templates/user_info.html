@@ -16,11 +16,11 @@
 	  <a href="{{url_for('main.base_info')}}">
           <div class="item-box" style="background:#FC6622;">
               <span class="item-title">昵称</span>
-              <span class="item-value">{{info.weixin_name or ""}}</span>
+              <span class="item-value" style="text-align: center;">{{info.weixin_name or ""}}</span>
           </div>
           <div class="item-box" style="background:#FC6622;">
               <span class="item-title">性别</span>
-              <span class="item-value">{{info.sex_name}}</span>
+              <span class="item-value" style="text-align: center;">{{info.sex_name}}</span>
           </div>
            <div class="item-box" style="background:#FC6622;">
               <span class="item-title">身高</span>
@@ -90,11 +90,11 @@
       <div class="page-content">
           <div class="item-box" style="background:#FC6622;">
               <span class="item-title">昵称</span>
-              <span class="item-value">{{info.weixin_name or ""}}</span>
+              <span class="item-value" style="text-align: center;">{{info.weixin_name or ""}}</span>
           </div>
           <div class="item-box" style="background:#FC6622;">
               <span class="item-title">性别</span>
-              <span class="item-value">{{info.sex_name}}</span>
+              <span class="item-value" style="text-align: center;">{{info.sex_name}}</span>
           </div>
            <div class="item-box" style="background:#FC6622;">
               <span class="item-title">身高</span>
@@ -142,12 +142,16 @@
           </div>
       </div>
       {% endif %}
+      {% if g.info == info %}
       <div class="page-foot">
-        <img class="foot-left" src="/static/resources/颈围/left.png"/>
-        <img class="foot-right" src="/static/resources/颈围/right.png"/>
-        <img class="foot-jietu" src="/static/resources/身材表/截屏键.png"/>
+        <a href="{{url_for('main.user_compare', weixin_id=info.weixin_id)}}"><img class="foot-btn" src="/static/resources/身材表/截屏键.png"/></a>
       </div>
-  	</div>
+     {% else %}
+      <div class="page-foot">
+        <a href="{{url_for('main.base_info')}}"><img class="foot-btn" src="/static/resources/身材表/截屏键.png"/></a>
+      </div>
+     {% endif %}
+    </div>
   </div>
 </form>
 <style>
@@ -164,12 +168,12 @@ a{
   top: 0;
   left: 0;
   width: 100%;
-  height: 20px;
-  background: rgba(255, 102, 0, 0.5);
+  height: 28px;
+  background: #FC9251;
 }
 .page-content{
-  width: 46%;
-  margin-top: 20%;
+  width: 52%;
+  margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
   background: transparent;
@@ -197,40 +201,20 @@ a{
 }
 .page-foot{
   width: 100%;
-  margin-top: 10%;
+  margin-top: 5%;
   background: transparent;
-  display: none;
 }
 .head-icon{
   position: absolute;
   left: 50%;
-  margin-left: -16px;
-  width: 32px;
-  margin-top: 2px;
-}
-.head-share{
-  position: absolute;
-  right: 4%;
-  height: 16px;
-  margin-top: 2px;
+  margin-left: -18px;
+  width: 36px;
+  margin-top: 5px;
 }
 .body-img{
   width: 100%;
 }
-.foot-left, .foot-right{
-  display: block;
-  width: 6%;
-  margin-top: 3%;
-}
-.foot-left{
-  float: left;
-  margin-left: 15%;
-}
-.foot-right{
-  float: right;
-  margin-right: 15%;
-}
-.foot-jietu{
+.foot-btn{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -239,25 +223,8 @@ a{
   z-index: 20;
 }
 </style>
-<script src="/static/js/html2canvas.min.js"></script>
-<script src="/static/js/canvas-toBlob.js"></script>
-<script src="/static/js/FileSaver.min.js"></script>
 <script>
 $(function(){
-/*
-  var blob;
-   html2canvas(document.body, {
-      onrendered: function(canvas) {
-        canvas.toBlob(function(_blob) {
-            blob = _blob;
-        });
-      }
-  });
-
-  $(".foot-jietu").click(function(e){
-    saveAs(blob, "body9.png");
-  });
-*/
 });
 </script>
 {% endblock %}

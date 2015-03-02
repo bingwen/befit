@@ -1,4 +1,5 @@
 #-*- coding: UTF-8 -*-
+import datetime
 from . import db, BaseModelMixin
 
 
@@ -60,41 +61,75 @@ class Info(db.Model, BaseModelMixin):
         return self.weixin_id
 
     @property
+    def age(self):
+        return (datetime.date.today() - self.birthday).days // 365
+
+    @property
     def biaozhun_neck(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.2 + (self.age - 30) * 0)
+        else:
+            return int(self.height * 0.2 + (self.age - 35) * 0)
 
     @property
     def biaozhun_shoulder(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.23 + (self.age - 30) * 0)
+        else:
+            return int(self.height * 0.25 + (self.age - 35) * 0)
 
     @property
     def biaozhun_arm_length(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.31 + (self.age - 30) * 0)
+        else:
+            return int(self.height * 0.31 + (self.age - 35) * 0)
 
     @property
     def biaozhun_arm_width(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.14 + (self.age - 30) * 0.1)
+        else:
+            return int(self.height * 0.16 + (self.age - 35) * 0.1)
 
     @property
     def biaozhun_chest(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.51 + (self.age - 30) * 0)
+        else:
+            return int(self.height * 0.48 + (self.age - 35) * 0)
 
     @property
     def biaozhun_waist(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.38 + (self.age - 30) * 0.1)
+        else:
+            return int(self.height * 0.43 + (self.age - 35) * 0.15)
 
     @property
     def biaozhun_butt(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.53 + (self.age - 30) * 0.15)
+        else:
+            return int(self.height * 0.51 + (self.age - 35) * 0.1)
 
     @property
     def biaozhun_leg_width(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.29 + (self.age - 30) * 0.15)
+        else:
+            return int(self.height * 0.3 + (self.age - 35) * 0.1)
 
     @property
     def biaozhun_leg_length(self):
-        return 80
+        if self.sex == 1:
+            return int(self.height * 0.45 + (self.age - 30) * 0)
+        else:
+            return int(self.height * 0.44 + (self.age - 35) * 0)
 
     @property
     def biaozhun_weight(self):
-        return 80
+        if self.sex == 1:
+            return int((self.height - 95) * 0.7 + (self.age - 30) * 0.3)
+        else:
+            return int((self.height - 95) * 0.8 + (self.age - 35) * 0.3)

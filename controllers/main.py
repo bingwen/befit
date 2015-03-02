@@ -22,7 +22,10 @@ items_length = len(items)
 
 @main_bp.route('/', methods=['GET'])
 def index():
-    return redirect(url_for('main.base_info'))
+    if g.info.height:
+        return redirect(url_for('main.user_info', weixin_id=g.info.weixin_id))
+    else:
+	return redirect(url_for('main.base_info'))
 
 
 @main_bp.route('/base/', methods=['GET', 'POST'])

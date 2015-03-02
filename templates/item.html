@@ -12,14 +12,16 @@
       <div class="page-body">
         <img class="body-img" src="/static/resources/{{item_name}}/测量图.png"/>
       </div>
+      <div class="page-btn">
+        <img class="foot-left" src="/static/resources/颈围/left.png"/>
+        <img class="foot-right" src="/static/resources/颈围/right.png"/>
+      </div>
       <div class="page-desc">
         <img class="description-words" src="/static/resources/{{item_name}}/description.png"/>
       </div>
       <div class="page-foot">
         <input class="foot-slide" name="item_value" type="range" value="{{item_value}}" min="0" max="160"/>
         <input class="item-action" style="display:none;" name="item_action" type="text" value="next"/>
-        <img class="foot-left" src="/static/resources/颈围/left.png"/>
-        <img class="foot-right" src="/static/resources/颈围/right.png"/>
         <p class="foot-num">{{item_value}}</p>
       </div>
   	</div>
@@ -41,6 +43,13 @@
   height: 75%;
   top: 0;
   left: 0;
+}
+.page-btn{
+  position: absolute;
+  width: 100%;
+  top: 28%;
+  left: 0;
+  z-index: 100;
 }
 .page-foot{
   position: absolute;
@@ -129,11 +138,11 @@
 }
 .foot-left{
   float: left;
-  margin-left: 15%;
+  margin-left: 5%;
 }
 .foot-right{
   float: right;
-  margin-right: 15%;
+  margin-right: 5%;
 }
 .foot-num{
   display: block;
