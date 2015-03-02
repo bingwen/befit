@@ -16,7 +16,7 @@ item_names = {
     'leg_length': u"腿长",
     'leg_width': u"腿围"
 }
-items = ['neck', 'shoulder', 'arm_length', 'arm_width', 'chest', 'waist', 'butt', 'leg_length', 'leg_width']
+items = ['chest', 'waist', 'butt', 'leg_length', 'leg_width', 'shoulder', 'arm_length', 'arm_width', 'neck']
 items_length = len(items)
 
 
@@ -34,7 +34,7 @@ def base_info():
         g.info.weight = int(request.values.get('weight'))
         g.info.birthday = datetime.datetime.strptime(request.values.get('birthday'), "%Y-%m-%d").date()
         g.info.save()
-        return redirect(url_for("main.item_form", item='neck'))
+        return redirect(url_for("main.item_form", item='chest'))
     return tpl("base_info.html")
 
 
@@ -45,6 +45,7 @@ def item_form(item):
     if request.method == 'POST':
         setattr(g.info, item, int(request.values.get('item_value')))
         g.info.save()
+
         item_index = items.index(item)
         item_action = request.values.get('item_action', 'next')
         if item_action == 'next':
@@ -67,3 +68,11 @@ def user_info(weixin_id):
     if not info:
         abort(404)
     return tpl("user_info.html", info=info)
+
+
+@main_bp.route('/u/<weixin_id>/compare', methods=['GET'])
+def user_compare(weixin_id):
+    info = Info.get_by_weixin(weixin_id)
+    if not info:
+        abort(404)
+    return tpl("user_compare.html", info=info)

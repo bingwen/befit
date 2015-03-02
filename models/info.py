@@ -27,6 +27,17 @@ class Info(db.Model, BaseModelMixin):
 
     def __init__(self, weixin_id):
         self.weixin_id = weixin_id
+        self.neck = 0
+        self.shoulder = 0
+        self.arm_length = 0
+        self.arm_width = 0
+        self.chest = 0
+        self.waist = 0
+        self.butt = 0
+        self.leg_width = 0
+        self.leg_length = 0
+        self.height = 0
+        self.weight = 0
 
     @property
     def sex_name(self):
@@ -47,3 +58,43 @@ class Info(db.Model, BaseModelMixin):
 
     def get_id(self):
         return self.weixin_id
+
+    @property
+    def biaozhun_neck(self):
+        return 80
+
+    @property
+    def biaozhun_shoulder(self):
+        return 80
+
+    @property
+    def biaozhun_arm_length(self):
+        return 80
+
+    @property
+    def biaozhun_arm_width(self):
+        return 80
+
+    @property
+    def biaozhun_chest(self):
+        return 80
+
+    @property
+    def biaozhun_waist(self):
+        return 80
+
+    @property
+    def biaozhun_butt(self):
+        return 80
+
+    @property
+    def biaozhun_leg_width(self):
+        return 80
+
+    @property
+    def biaozhun_leg_length(self):
+        return 80
+
+    @property
+    def biaozhun_weight(self):
+        return 80

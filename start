@@ -1,0 +1,18 @@
+#!/bin/bash
+
+NAME="befit"
+PROJECTDIR=/home/roy/apps/befit/
+
+echo "Starting $NAME"
+
+# activate the virtualenv
+cd $PROJECTDIR
+export PYENV_ROOT="/home/roy/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+eval "$(pyenv activate befit)"
+export PATH="$PYENV_ROOT/versions/befit/bin/:$PATH"
+
+exec python app.py
