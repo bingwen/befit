@@ -25,7 +25,12 @@ def index():
     if g.info.height:
         return redirect(url_for('main.user_info', weixin_id=g.info.weixin_id))
     else:
-	return redirect(url_for('main.base_info'))
+        return redirect(url_for('main.slide'))
+
+
+@main_bp.route('/slide', methods=['GET'])
+def slide():
+    return tpl("slide.html")
 
 
 @main_bp.route('/base/', methods=['GET', 'POST'])
