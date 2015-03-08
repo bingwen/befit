@@ -9,7 +9,7 @@
   <div class="pages">
   	<div class="page">
       <div class="page-head">
-        <img class="head-icon" src="/static/resources/颈围/logo.png"/>
+        <img class="head-icon" src="http://7x2vyz.com1.z0.glb.clouddn.com/logo.png"/>
       </div>
       {% if g.info and g.info == info %}
       <div class="page-content">
@@ -143,12 +143,12 @@
       </div>
       {% endif %}
       {% if g.info == info %}
-      <div class="page-foot">
+      <div class="page-bottom">
         <a href="{{url_for('main.user_compare', weixin_id=info.weixin_id)}}"><img class="foot-btn" src="/static/resources/按钮0302/pk标准身材.png"/></a>
       </div>
      {% else %}
-      <div class="page-foot">
-        <a href="{{url_for('main.base_info')}}"><img class="foot-btn" src="/static/resources/按钮0302/我也要测量.png"/></a>
+      <div class="page-bottom">
+        <a href="{{url_for('main.slide')}}"><img class="foot-btn" src="/static/resources/按钮0302/我也要测量.png"/></a>
       </div>
      {% endif %}
     </div>
@@ -156,7 +156,7 @@
 </form>
 <style>
 .page{
-  background-image: url("/static/resources/身材表/背景.png");
+  background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/身材表_背景.png");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -199,7 +199,7 @@ a{
     text-align: right;
     display: inline-block;
 }
-.page-foot{
+.page-bottom{
   width: 100%;
   margin-top: 5%;
   background: transparent;

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>求合身</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h3>用户数据 <a class="btn btn-sm btn-default" href="{{url_for('admin.download')}}">download</a></h3>
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th>Name</th>
+          <th>性别</th>
+          <th>出生日期</th>
+          <th>身高</th>
+          <th>体重</th>
+          <th>颈围</th>
+          <th>肩宽</th>
+          <th>臂长</th>
+          <th>臂围</th>
+          <th>胸围</th>
+          <th>腰围</th>
+          <th>臀围</th>
+          <th>腿长</th>
+          <th>大腿围</th>
+        <tr>
+        {% for info in infos %}
+        <tr>
+          <td>{{info.weixin_name}}</td>
+          <td>{{info.sex_name}}</td>
+          <td>{{info.birthday}}</td>
+          <td>{{info.height}}</td>
+          <td>{{info.weight}}</td>
+          <td>{{info.neck}}</td>
+          <td>{{info.shoulder}}</td>
+          <td>{{info.arm_length}}</td>
+          <td>{{info.arm_width}}</td>
+          <td>{{info.chest}}</td>
+          <td>{{info.waist}}</td>
+          <td>{{info.butt}}</td>
+          <td>{{info.leg_length}}</td>
+          <td>{{info.leg_width}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

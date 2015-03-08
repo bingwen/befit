@@ -133,3 +133,20 @@ class Info(db.Model, BaseModelMixin):
             return int((self.height - 95) * 0.7 + (self.age - 30) * 0.3)
         else:
             return int((self.height - 95) * 0.8 + (self.age - 35) * 0.3)
+
+    @property
+    def str_infos(self):
+        return (self.weixin_name or "",
+                str(self.birthday) or "",
+                self.sex_name,
+                str(self.height),
+                str(self.weight),
+                str(self.neck),
+                str(self.shoulder),
+                str(self.arm_length),
+                str(self.arm_width),
+                str(self.chest),
+                str(self.waist),
+                str(self.butt),
+                str(self.leg_width),
+                str(self.leg_length))

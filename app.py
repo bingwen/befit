@@ -27,7 +27,7 @@ def request_user():
     if current_user and current_user.is_authenticated():
         g.info = current_user
     else:
-        if request.path.startswith(u'/m/u/') or request.path.startswith(u'/static/'):
+        if request.path.startswith(u'/m/u/') or request.path.startswith(u'/static/') or request.path.startswith(u'/admin'):
             pass
         else:
             code = request.values.get('code')
