@@ -74,9 +74,9 @@ class Info(db.Model, BaseModelMixin):
     @property
     def biaozhun_shoulder(self):
         if self.sex == 1:
-            return int(self.height * 0.23 + (self.age - 30) * 0)
+            return int(self.height * 0.24 + (self.age - 30) * 0)
         else:
-            return int(self.height * 0.25 + (self.age - 35) * 0)
+            return int(self.height * 0.26 + (self.age - 35) * 0)
 
     @property
     def biaozhun_arm_length(self):
@@ -104,7 +104,7 @@ class Info(db.Model, BaseModelMixin):
         if self.sex == 1:
             return int(self.height * 0.38 + (self.age - 30) * 0.1)
         else:
-            return int(self.height * 0.43 + (self.age - 35) * 0.15)
+            return int(self.height * 0.47 + (self.age - 35) * 0.15)
 
     @property
     def biaozhun_butt(self):

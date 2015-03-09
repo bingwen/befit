@@ -5,11 +5,33 @@
 {% endblock %}
 
 {% block content %}
+<style>
+.page{ background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/身材表_背景.png"); background-size: 100%; background-repeat: no-repeat; }
+.page-head{ display: absolute; top: 0; left: 0; width: 100%; height: 28px; background: #FC9251; }
+.page-content{ display: inline-block; width: 42%; margin-top: 10%; margin-left: 12%; background: transparent; }
+.page-compare{ display: inline-block; float: right; width: 30%; margin-top: 10%; margin-right: 12%; background: transparent; }
+.item-box{ margin-top: 2px; color: white; line-height: 20px; font-size: 18px; font-weight: lighter; height: 26px; }
+.item-title{ width: 30%; padding: 3px; margin-left: 5%; text-align: justify; display: inline-block; }
+.item-value{ width: 45%; padding: 3px; text-align: right; display: inline-block; }
+.page-compare .canshu-box{ height: 82px; width: 100%; }
+.canshu-box .item-title{ display: inline-block; width: 40%; margin: 0; font-size: 18px; line-height: 32px; text-align: center; }
+.page-compare .item-biaozhun{ width: 30%; padding: 3px; margin-left: 4%; text-align: justify; display: inline-block; }
+.page-compare .item-jiantou{ width: 8%; margin-left: 2%; display: inline-block; }
+.page-compare .item-chazhi{ width: 30%; padding: 3px; margin-right: 4%; text-align: right; display: inline-block; float: right; }
+.page-bottom{ width: 100%; margin-top: 5%; background: transparent; }
+.head-icon{ position: absolute; left: 50%; margin-left: -18px; width: 36px; margin-top: 5px; }
+.head-share{ position: absolute; right: 4%; height: 20px; margin-top: 4px; }
+.body-img{ width: 100%; }
+.foot-btn{ display: block; margin-left: auto; margin-right: auto; margin-bottom: 5%; width: 20%; z-index: 20; }
+.share-box{ position: absolute; top: 0; left: 0; z-index: 9999; width: 100%; height: 120%; background: rgba(0, 0, 0, 0.8); display: none;}
+.share-words{ float: right; width: 50%; ; margin-top: 5%; margin-right: 5%;}
+</style>
 <form method="POST">
   <div class="pages">
   	<div class="page">
       <div class="page-head">
         <img class="head-icon" src="http://7x2vyz.com1.z0.glb.clouddn.com/logo.png"/>
+        <img class="head-share" src="http://7x2vyz.com1.z0.glb.clouddn.com/aa纸飞机x.png"/>
       </div>
       <div class="page-content">
           <div class="item-box" style="background:#FC6622;">
@@ -26,7 +48,7 @@
           </div>
            <div class="item-box" style="background:#97040C;">
               <span class="item-title">体重</span>
-              <span class="item-value">{{info.weight or ""}} kg</span>
+              <span class="item-value">{{info.weight or ""}} k g</span>
           </div>
            <div class="item-box" style="background:#97040C;">
                <span class="item-title">颈围</span>
@@ -67,219 +89,155 @@
       </div>
     <div class="page-compare">
           <div class="item-box canshu-box" style="background:#FC6622;">
-              <span class="item-title">标准</span>
-              <span class="item-title">参数</span>
+              <span class="item-title">魔</span>
+              <span class="item-title">鬼</span>
+              <span class="item-title">参</span>
+              <span class="item-title">数</span>
           </div>
            <div class="item-box" style="background:#084B09;">
               <span class="item-biaozhun">{{info.biaozhun_weight or ""}}</span>
-	      {% if info.weight > info.biaozhun_weight %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.weight > info.biaozhun_weight %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.weight - info.biaozhun_weight}}</span>
-	      {% elif info.weight < info.biaozhun_weight %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.weight < info.biaozhun_weight %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_weight - info.weight}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#0C650E;">
               <span class="item-biaozhun">{{info.biaozhun_neck or ""}}</span>
-	      {% if info.neck > info.biaozhun_neck %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.neck > info.biaozhun_neck %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.neck - info.biaozhun_neck}}</span>
-	      {% elif info.neck < info.biaozhun_neck %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.neck < info.biaozhun_neck %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_neck - info.neck}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#117E13;">
               <span class="item-biaozhun">{{info.biaozhun_chest or ""}}</span>
-	      {% if info.chest > info.biaozhun_chest %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.chest > info.biaozhun_chest %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.chest - info.biaozhun_chest}}</span>
-	      {% elif info.chest < info.biaozhun_chest %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.chest < info.biaozhun_chest %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_chest - info.chest}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#169719;">
               <span class="item-biaozhun">{{info.biaozhun_waist or ""}}</span>
-	      {% if info.waist > info.biaozhun_waist %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.waist > info.biaozhun_waist %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.waist - info.biaozhun_waist}}</span>
-	      {% elif info.waist < info.biaozhun_waist %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.waist < info.biaozhun_waist %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_waist - info.waist}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#26B029;">
               <span class="item-biaozhun">{{info.biaozhun_butt or ""}}</span>
-	      {% if info.butt > info.biaozhun_butt %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.butt > info.biaozhun_butt %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.butt - info.biaozhun_butt}}</span>
-	      {% elif info.butt < info.biaozhun_butt %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.butt < info.biaozhun_butt %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_butt - info.butt}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#3CCA3F;">
               <span class="item-biaozhun">{{info.biaozhun_leg_width or ""}}</span>
-	      {% if info.leg_width > info.biaozhun_leg_width %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.leg_width > info.biaozhun_leg_width %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.leg_width - info.biaozhun_leg_width}}</span>
-	      {% elif info.leg_width < info.biaozhun_leg_width %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.leg_width < info.biaozhun_leg_width %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_leg_width - info.leg_width}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#54E356;">
               <span class="item-biaozhun">{{info.biaozhun_leg_length or ""}}</span>
-	      {% if info.leg_length > info.biaozhun_leg_length %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.leg_length > info.biaozhun_leg_length %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.leg_length - info.biaozhun_leg_length}}</span>
-	      {% elif info.leg_length < info.biaozhun_leg_length %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.leg_length < info.biaozhun_leg_length %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_leg_length - info.leg_length}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#6DFD6E;">
-              <span class="item-biaozhun">{{info.biaozhun_arm_width or ""}}</span>
-	      {% if info.arm_width > info.biaozhun_arm_width %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
-              <span class="item-chazhi">{{info.arm_width - info.biaozhun_arm_width}}</span>
-	      {% elif info.arm_width < info.biaozhun_arm_width %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
-              <span class="item-chazhi">{{info.biaozhun_arm_width - info.arm_width}}</span>
-	      {% endif %}	
+              <span class="item-biaozhun">{{info.biaozhun_arm_length or ""}}</span>
+              {% if info.arm_length > info.biaozhun_arm_length %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              <span class="item-chazhi">{{info.arm_length - info.biaozhun_arm_length}}</span>
+              {% elif info.arm_length < info.biaozhun_arm_length %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              <span class="item-chazhi">{{info.biaozhun_arm_length - info.arm_length}}</span>
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#9CFD6F;">
               <span class="item-biaozhun">{{info.biaozhun_arm_width or ""}}</span>
-	      {% if info.arm_width > info.biaozhun_arm_width %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.arm_width > info.biaozhun_arm_width %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.arm_width - info.biaozhun_arm_width}}</span>
-	      {% elif info.arm_width < info.biaozhun_arm_width %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.arm_width < info.biaozhun_arm_width %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_arm_width - info.arm_width}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
            <div class="item-box" style="background:#CBFB6F;">
               <span class="item-biaozhun">{{info.biaozhun_shoulder or ""}}</span>
-	      {% if info.shoulder > info.biaozhun_shoulder %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              {% if info.shoulder > info.biaozhun_shoulder %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
               <span class="item-chazhi">{{info.shoulder - info.biaozhun_shoulder}}</span>
-	      {% elif info.shoulder < info.biaozhun_shoulder %}	
-	      <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              {% elif info.shoulder < info.biaozhun_shoulder %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_shoulder - info.shoulder}}</span>
-	      {% endif %}	
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
           </div>
       </div>
       {% if g.info == info %}
       <div class="page-bottom">
-        <a href="{{url_for('main.user_info', weixin_id=info.weixin_id)}}"><img class="foot-btn" src="/static/resources/按钮0302/返回身材表.png"/></a>
+        <a href="{{url_for('main.user_info', weixin_id=info.weixin_id)}}"><img class="foot-btn" src="http://7x2vyz.com1.z0.glb.clouddn.com/返回身材表.png"/></a>
       </div>
      {% else %}
       <div class="page-bottom">
-        <a href="{{url_for('main.slide')}}"><img class="foot-btn" src="/static/resources/按钮0302/我也要测量.png"/></a>
+        <a href="{{url_for('main.slide')}}"><img class="foot-btn" src="http://7x2vyz.com1.z0.glb.clouddn.com/我也要测量.png"/></a>
       </div>
      {% endif %}
     </div>
   </div>
+    <div class="share-box">
+      <img class="share-words" src="http://7x2vyz.com1.z0.glb.clouddn.com/aa分享newx.png"/>
+    </div>
 </form>
-<style>
-.page{
-  background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/身材表_背景.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-.page-head{
-  display: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 28px;
-  background: #FC9251;
-}
-.page-content{
-  display: inline-block;
-  width: 46%;
-  margin-top: 10%;
-  margin-left: 10%;
-  background: transparent;
-}
-.page-compare{
-  display: inline-block;
-  width: 28%;
-  margin-top: 10%;
-  margin-left: 5%;
-  background: transparent;
-}
-.item-box{
-  margin-top: 2px;
-  color: white;
-  line-height: 20px;
-  font-size: 18px;
-  font-weight: lighter;
-}
-.item-title{
-    width: 30%;
-    padding: 3px;
-    margin-left: 5%;
-    text-align: justify;
-    display: inline-block;
-}
-.item-value{
-    width: 45%;
-    padding: 3px;
-    text-align: right;
-    display: inline-block;
-}
-.page-compare .canshu-box{
-  height: 82px;
-}
-.canshu-box .item-title{
-  font-size: 28px;
-  line-height: 40px;
-}
-.page-compare .item-biaozhun{
-    width: 30%;
-    padding: 3px;
-    margin-left: 5%;
-    text-align: justify;
-    display: inline-block;
-}
-.page-compare .item-jiantou{
-    width: 10%;
-    margin-left: 2%;
-    display: inline-block;
-}
-.page-compare .item-chazhi{
-    width: 20%;
-    padding: 3px;
-    margin-left: 2%;
-    text-align: right;
-    display: inline-block;
-}
-.page-bottom{
-  width: 100%;
-  margin-top: 5%;
-  background: transparent;
-}
-.head-icon{
-  position: absolute;
-  left: 50%;
-  margin-left: -18px;
-  width: 36px;
-  margin-top: 5px;
-}
-.body-img{
-  width: 100%;
-}
-.foot-btn{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5%;
-  width: 20%;
-  z-index: 20;
-}
-
-</style>
+<script>
+$(function(){
+  $(".head-share").click(function(e){
+     $(".share-box").show(); 
+  });
+  $(".share-box").click(function(e){
+     $(".share-box").hide(); 
+  });
+});
+</script>
 {% endblock %}

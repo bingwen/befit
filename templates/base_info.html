@@ -5,27 +5,41 @@
   	<div class="page">
       <img class="page-bg" src="http://7x2vyz.com1.z0.glb.clouddn.com/注册页背景.png"/>
       <form method="POST">
-          <label>昵称</label>
-          <input class="weixin_name" name="weixin_name" type="text" value="{{g.info.weixin_name or ""}}"/>
-          <label>性别</label>
-          <select class="sex" name="sex">
-            <option value="1" {{'selected' if g.info.sex != 2 else ''}}>女</option>
-            <option value="2" {{'selected' if g.info.sex == 2 else ''}}>男</option>
-          </select>
-          <label>身高cm</label>
-          <select class="weight" name="height">
-	    {% for x in range(120, 200) %}
-            <option value="{{x}}" {{'selected' if g.info.height == x else ''}}>{{x}}</option>
-	    {% endfor %}
-          </select>
-          <label>体重kg</label>
-          <select class="weight" name="weight">
-	    {% for x in range(30, 120) %}
-            <option value="{{x}}" {{'selected' if g.info.weight == x else ''}}>{{x}}</option>
-	    {% endfor %}
-          </select>
-          <label>出生年月</label>
-          <input class="birthday" name="birthday" type="date" value="{{g.info.birthday.strftime('%Y-%m-%d') if g.info.birthday else '2000-01-01'}}" min="1970-01-01"/>
+          <div class="form-line">
+              <label>昵称</label>
+              <input class="weixin_name" name="weixin_name" type="text" value="{{g.info.weixin_name or ""}}"/>
+              <span class="form-danwei"></span>
+          </div>
+          <div class="form-line">
+              <label>性别</label>
+              <select class="sex" name="sex">
+                <option value="1" {{'selected' if g.info.sex != 2 else ''}}>女</option>
+                <option value="2" {{'selected' if g.info.sex == 2 else ''}}>男</option>
+              </select>
+              <span class="form-danwei"></span>
+          </div>
+          <div class="form-line">
+              <label>身高</label>
+              <select class="weight" name="height">
+                {% for x in range(120, 200) %}
+                <option value="{{x}}" {{'selected' if g.info.height == x else ''}}>{{x}}</option>
+                {% endfor %}
+              </select>
+              <span class="form-danwei">cm</span>
+          </div>
+          <div class="form-line">
+              <label>体重</label>
+              <select class="weight" name="weight">
+                {% for x in range(30, 120) %}
+                <option value="{{x}}" {{'selected' if g.info.weight == x else ''}}>{{x}}</option>
+                {% endfor %}
+              </select>
+              <span class="form-danwei">kg</span>
+          </div>
+          <div class="form-line">
+              <label>出生年月</label>
+              <input id="birthday" name="birthday" type="date" value="{{g.info.birthday.strftime('%Y-%m-%d') if g.info.birthday else '2000-01-01'}}" min="1970-01-01"/>
+          </div>
       </form>
       <img class="next-btn" src="http://7x2vyz.com1.z0.glb.clouddn.com/注册按钮.png"/>
       <img class="logo" src="http://7x2vyz.com1.z0.glb.clouddn.com/logo.png"/>
@@ -42,58 +56,51 @@
   width: 100%;
   z-index: -10;
 }
-input, select{
-  width: 100%;
-  text-align: center;
-  border: none;
-  background: transparent;
-  color: white;
-  height: 10%;
-  font-size: 14px;
-  font-weight: lighter;
-  border-bottom: white 1px dashed;
-  margin: 10% 0;
-  padding: 0;
-}
-select{
-  text-indent: 30px;
-}
-select option{
-  text-align:center;
-}
-form label{
-  display: block;
-  width: 100%;
-  height: 30%;
-  color: white;
-  font-size: 14px;
-  font-weight: lighter;
-  text-align: center;
-}
-.birthday{
-  font-size: 12px;
-  text-align: left;
-  width: 100%;
-}
-.birthday ::-webkit-inner-spin-button { display: none; }
-.birthday ::-webkit-calendar-picker-indicator { display: none; }
 form{
-  margin-left: 37%;
-  width: 26%;
-  height: 36%;
+  width: 56%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 34%;
   text-align: center;
 }
-.next-btn{
-  margin-left: 41%;
-  width: 18%;
-  margin-top: 8%;
+.form-line{
+  width: 100%;
+  border-bottom: white 1px dashed;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: lighter;
 }
-.logo{
-  margin-left: 44%;
-  width: 12%;
-  margin-top: 4%;
+form label{
+  width: 35%;
+  text-align: center;
+  color: white;
+  padding: 0;
+  display: inline-block;
+  margin-left: 0;
+  line-height: 22px;
 }
+.form-line input, .form-line select{
+  display: inline-block;
+  width: 40%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: white;
+  padding: 0;
+  font-size: 14px;
+  margin: 0;
+}
+.form-line .form-danwei{
+  width: 10%;
+  color: white;
+  display: inline-block;
+}
+#birthday{ width: 60%; font-size: 14px; text-align: left; }
+#birthday ::-webkit-inner-spin-button { display: none; }
+#birthday ::-webkit-calendar-picker-indicator { display: none; }
+
+.next-btn{ margin-left: 41%; width: 18%; margin-top: 14%; }
+.logo{ margin-left: 44%; width: 12%; margin-top: 4%; }
 </style>
 <script>
 $(function(){

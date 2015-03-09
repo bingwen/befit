@@ -5,11 +5,27 @@
 {% endblock %}
 
 {% block content %}
+<style>
+.page{ background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/身材表_背景.png"); background-size: 100%; background-repeat: no-repeat; }
+a{ text-decoration: none; }
+.page-head{ display: absolute; top: 0; left: 0; width: 100%; height: 28px; background: #FC9251; }
+.page-content{ width: 52%; margin-top: 10%; margin-left: auto; margin-right: auto; background: transparent; }
+.item-box{ margin-top: 2px; color: white; line-height: 20px; font-size: 18px; font-weight: lighter; }
+.item-title{ width: 30%; padding: 2px; margin-left: 10%; text-align: justify; display: inline-block; }
+.item-value{ width: 40%; padding: 3px; margin-left: 5%; text-align: right; display: inline-block; }
+.page-bottom{ width: 100%; margin-top: 5%; background: transparent; }
+.head-icon{ position: absolute; left: 50%; margin-left: -18px; width: 36px; margin-top: 5px; }
+.head-share{ position: absolute; right: 4%; height: 20px; margin-top: 4px; }
+.body-img{ width: 100%; }
+.foot-btn{ display: block; margin-left: auto; margin-right: auto; margin-bottom: 5%; width: 20%; z-index: 20; }
+.share-box{ position: absolute; top: 0; left: 0; z-index: 9999; width: 100%; height: 120%; background: rgba(0, 0, 0, 0.8); display: none;}
+.share-words{ float: right; width: 50%; ; margin-top: 5%; margin-right: 5%;}
+</style>
 <form method="POST">
-  <div class="pages">
   	<div class="page">
       <div class="page-head">
         <img class="head-icon" src="http://7x2vyz.com1.z0.glb.clouddn.com/logo.png"/>
+        <img class="head-share" src="http://7x2vyz.com1.z0.glb.clouddn.com/aa纸飞机x.png"/>
       </div>
       {% if g.info and g.info == info %}
       <div class="page-content">
@@ -28,7 +44,7 @@
           </div>
            <div class="item-box" style="background:#97040C;">
               <span class="item-title">体重</span>
-              <span class="item-value">{{info.weight or ""}} kg</span>
+              <span class="item-value">{{info.weight or ""}} k g</span>
           </div>
 	  </a>
 	  <a href="{{url_for('main.item_form', item='neck')}}">
@@ -144,87 +160,26 @@
       {% endif %}
       {% if g.info == info %}
       <div class="page-bottom">
-        <a href="{{url_for('main.user_compare', weixin_id=info.weixin_id)}}"><img class="foot-btn" src="/static/resources/按钮0302/pk标准身材.png"/></a>
+        <a href="{{url_for('main.user_compare', weixin_id=info.weixin_id)}}"><img class="foot-btn" src="http://7x2vyz.com1.z0.glb.clouddn.com/魔鬼身材钮.png"/></a>
       </div>
      {% else %}
       <div class="page-bottom">
-        <a href="{{url_for('main.slide')}}"><img class="foot-btn" src="/static/resources/按钮0302/我也要测量.png"/></a>
+        <a href="{{url_for('main.slide')}}"><img class="foot-btn" src="http://7x2vyz.com1.z0.glb.clouddn.com/我也要测量.png"/></a>
       </div>
      {% endif %}
     </div>
-  </div>
+    <div class="share-box">
+      <img class="share-words" src="http://7x2vyz.com1.z0.glb.clouddn.com/aa分享newx.png"/>
+    </div>
 </form>
-<style>
-.page{
-  background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/身材表_背景.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-a{
-  text-decoration: none;
-}
-.page-head{
-  display: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 28px;
-  background: #FC9251;
-}
-.page-content{
-  width: 52%;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
-  background: transparent;
-}
-.item-box{
-  margin-top: 2px;
-  color: white;
-  line-height: 20px;
-  font-size: 18px;
-  font-weight: lighter;
-}
-.item-title{
-    width: 30%;
-    padding: 2px;
-    margin-left: 10%;
-    text-align: justify;
-    display: inline-block;
-}
-.item-value{
-    width: 40%;
-    padding: 3px;
-    margin-left: 5%;
-    text-align: right;
-    display: inline-block;
-}
-.page-bottom{
-  width: 100%;
-  margin-top: 5%;
-  background: transparent;
-}
-.head-icon{
-  position: absolute;
-  left: 50%;
-  margin-left: -18px;
-  width: 36px;
-  margin-top: 5px;
-}
-.body-img{
-  width: 100%;
-}
-.foot-btn{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5%;
-  width: 20%;
-  z-index: 20;
-}
-</style>
 <script>
 $(function(){
+  $(".head-share").click(function(e){
+     $(".share-box").show(); 
+  });
+  $(".share-box").click(function(e){
+     $(".share-box").hide(); 
+  });
 });
 </script>
 {% endblock %}

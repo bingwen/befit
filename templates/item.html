@@ -19,185 +19,78 @@
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-mobile/1.4.3/jquery.mobile.min.css">
-  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-  <script src="http://cdn.bootcss.com/jquery-mobile/1.4.3/jquery.mobile.min.js"></script>
+  <style>
+  html body{width: 100%; min-height: 110%;}
+  .ui-slider input{ display: none; }
+  .ui-slider .ui-slider-track{ width: 90%; margin: 0; margin-left: 5%; background: none; border: none; height: auto; }
+  .ui-slider .ui-slider-handle{ height: 24px; width: 24px; cursor: pointer; background: #EEE; border: 1px solid #FFF; -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1); -webkit-border-radius: 40px; }
+  .page{ width: 100%; height: 100%; }
+  .page-head{ position: absolute; width: 100%; height: 28px; top: 0; left: 0; background: rgba(255, 102, 0, 0.5); z-index: 100; }
+  .page-body{ position: absolute; width: 100%; height: 75%; top: 0; left: 0; }
+  .page-btn{ position: absolute; width: 100%; top: 28%; left: 0; z-index: 100; z-index: 100;}
+  .btn-left, .btn-right{ display: block; margin-top: 12%; width: 6%; z-index: 20; }
+  .btn-left{ float: left; margin-left: 5%; }
+  .btn-right{ float: right; margin-right: 5%; }
+  .page-desc{ position: absolute; width: 100%; bottom: 25%; left: 0; background: rgba(255, 102, 0, 0.5); z-index: 100; text-align: center; }
+  .page-foot{ position: absolute; width: 100%; top: 75%; min-height: 25%; left: 0; background: #E6E6E6; background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/面板0308.png"); background-size: 100%; background-repeat: no-repeat; box-shadow:0px -4px 10px #333; z-index: 100;}
+  .description-words{ height: 16px; padding: 4px; }
+  .page-head div{ display: inline-block; color: white; line-height: 26px; font-size: 14px; }
+  .page-title{ color: white; margin-top: 4px; margin-left: 4%; line-height: 26px; font-size: 18px; font-weight: lighter; }
+  .head-icon{ position: absolute; left: 50%; margin-left: -16px; width: 36px; margin-top: 5px; }
+  .head-report{ position: absolute; right: 4%; height: 20px; margin-top: 4px; }
+  .body-img{ width: 100%; }
+  .foot-bg{ position: absolute; float: left; width: 100%; top: 0; left: 0; z-index: 10; }
+  .foot-num{ display: block; float: left; margin: 0; margin-left: 20%; width: 60%; text-align: center; line-height: 60px; font-size: 60px; color: #FD5900; font-weight: lighter; z-index: 20; }
+  .foot-cm{ display: block; float: left; margin-top: 12%; width: 10%; text-align: center; line-height: 20px; font-size: 20px; color: #FD5900; font-weight: lighter; z-index: 20; }
+  </style>
 </head>
 <body>
   <form method="POST" data-ajax="false" action="{{url_for('main.item_form', item=item)}}">
   	<div class="page">
       <div class="page-head">
-        <img class="page-title" src="http://7x2vyz.com1.z0.glb.clouddn.com/{{item_name}}words.png"/>
-        <a href="{{url_for('main.user_info', weixin_id=g.info.weixin_id)}}"><img class="head-report" src="/static/resources/颈围/report.png"/></a>
+        <span class="page-title"/>{{item_header_name}}</span>
+        <img class="head-report" src="/static/resources/颈围/report.png"/>
         <img class="head-icon" src="http://7x2vyz.com1.z0.glb.clouddn.com/logo.png"/>
       </div>
-      <div class="page-body">
-        <img class="body-img" src="http://7x2vyz.com1.z0.glb.clouddn.com/{{item_name}}测量图.png"/>
-      </div>
       <div class="page-btn">
-        <img class="foot-left" src="http://7x2vyz.com1.z0.glb.clouddn.com/left.png"/>
-        <img class="foot-right" src="http://7x2vyz.com1.z0.glb.clouddn.com/right.png"/>
+        <img class="btn-left" src="http://7x2vyz.com1.z0.glb.clouddn.com/left.png"/>
+        <img class="btn-right" src="http://7x2vyz.com1.z0.glb.clouddn.com/right.png"/>
       </div>
       <div class="page-desc">
         <img class="description-words" src="http://7x2vyz.com1.z0.glb.clouddn.com/{{item_name}}.png"/>
       </div>
       <div class="page-foot">
         <input class="foot-slide" name="item_value" type="range" value="{{item_value}}" min="0" max="160"/>
-        <input class="item-action" style="display:none;" name="item_action" type="text" value="next"/>
+        <input class="item-action" style="display: none;" name="item_action" type="text" value="next"/>
         <p class="foot-num">{{item_value}}</p>
+        <p class="foot-cm">cm</p>
+      </div>
+      <div class="page-body">
+        <img class="body-img" src="http://7x2vyz.com1.z0.glb.clouddn.com/aa{{item_name}}x.jpg"/>
       </div>
   	</div>
   </form>
-<style>
-.ui-slider input{
-  display: none;
-}
-.ui-slider .ui-slider-track{
-  width: 90%;
-  margin: 0;
-  margin-left: 5%;
-  background: none;
-  border: none;
-  height: auto;
-}
-.ui-slider .ui-slider-handle{
-  height: 24px;
-  width: 24px;
-  cursor: pointer;
-  background: #EEE;
-  border: 1px solid #FFF;
-  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
-  -webkit-border-radius: 40px;
-}
-.page{
-  width: 100%;
-  height: 100%;
-}
-.page-head{
-  position: absolute;
-  width: 100%;
-  height: 28px;
-  top: 0;
-  left: 0;
-  background: rgba(255, 102, 0, 0.5);
-  z-index: 100;
-}
-.page-body{
-  position: absolute;
-  width: 100%;
-  height: 75%;
-  top: 0;
-  left: 0;
-}
-.page-btn{
-  position: absolute;
-  width: 100%;
-  top: 28%;
-  left: 0;
-  z-index: 100;
-}
-.page-foot{
-  position: absolute;
-  width: 100%;
-  top: 75%;
-  min-height: 25%;
-  left: 0;
-  background: #E6E6E6;
-  background-image: url("/static/resources/颈围/bg.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  box-shadow:0px -4px 10px #333;
-}
-.page-desc{
-  position: absolute;
-  width: 100%;
-  bottom: 25%;
-  left: 0;
-  background: rgba(255, 102, 0, 0.5);
-  z-index: 100;
-}
-.description-words{
-  width: 96%;
-  padding: 2%;
-}
-.page-head div{
-  display: inline-block;
-  color: white;
-  line-height: 26px;
-  font-size: 14px;
-}
-.page-title{
-  margin-top: 4px;
-  margin-left: 4%;
-  height: 16px;
-  margin-top: 6px;
-}
-.head-icon{
-  position: absolute;
-  left: 50%;
-  margin-left: -16px;
-  width: 36px;
-  margin-top: 5px;
-}
-.head-report{
-  position: absolute;
-  right: 4%;
-  height: 20px;
-  margin-top: 4px;
-}
-.body-img{
-  width: 100%;
-}
-.foot-bg{
-  position: absolute;
-  float: left;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
-}
-.foot-left, .foot-right{
-  display: block;
-  margin-top: 12%;
-  width: 6%;
-  z-index: 20;
-}
-.foot-left{
-  float: left;
-  margin-left: 5%;
-}
-.foot-right{
-  float: right;
-  margin-right: 5%;
-}
-.foot-num{
-  display: block;
-  margin: 0;
-  margin-top: 8%;
-  margin-left: 20%;
-  width: 60%;
-  text-align: center;
-  line-height: 60px;
-  font-size: 60px;
-  color: #FD5900;
-  font-weight: lighter;
-  z-index: 20;
-}
-</style>
-<script>
-$(function(){
-  $(".foot-slide").on("change mousemove touchmove", function(){
-    $(".foot-num").html($(this).val());
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/jquery-mobile/1.4.3/jquery.mobile.min.js"></script>
+  <script>
+  $(function(){
+    $(".foot-slide").on("change mousemove touchmove", function(){
+      $(".foot-num").html($(this).val());
+    });
+    $(".btn-right").click(function(e){
+        $(".item-action").val("next");
+        $("form").submit();
+    });
+    $(".btn-left").click(function(e){
+        $(".item-action").val("pre");
+        $("form").submit();
+    });
+    $(".head-report").click(function(e){
+        $(".item-action").val("report");
+        $("form").submit();
+    });
   });
-  $(".foot-right").click(function(e){
-      $(".item-action").val("next");
-      $("form").submit();
-  });
-  $(".foot-left").click(function(e){
-      $(".item-action").val("pre");
-      $("form").submit();
-  });
-});
-</script>
+  </script>
 </body>
 </html>
 

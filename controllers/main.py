@@ -17,15 +17,15 @@ item_names = {
     'leg_width': u"腿围"
 }
 item_header_names = {
-    'neck': u"颈围(9/9)",
-    'shoulder': u"肩宽(6/9)",
-    'arm_length': u"臂长(7/9)",
-    'arm_width': u"臂围(8/9)",
-    'chest': u"胸围(1/9)",
-    'waist': u"腰围(2/9)",
-    'butt': u"臀围(3/9)",
-    'leg_length': u"腿长(4/9)",
-    'leg_width': u"腿围(5/9)"
+    'neck': u"量颈围 9/9",
+    'shoulder': u"量肩宽 6/9",
+    'arm_length': u"量臂长 7/9",
+    'arm_width': u"量臂围 8/9",
+    'chest': u"量胸围 1/9",
+    'waist': u"量腰围 2/9",
+    'butt': u"量臀围 3/9",
+    'leg_length': u"量腿长 4/9",
+    'leg_width': u"量腿围 5/9"
 }
 items = ['chest', 'waist', 'butt', 'leg_length', 'leg_width', 'shoulder', 'arm_length', 'arm_width', 'neck']
 items_length = len(items)
@@ -77,6 +77,8 @@ def item_form(item):
                 return redirect(url_for('main.item_form', item=items[item_index - 1]))
             else:
                 return redirect(url_for('main.base_info'))
+        elif item_action == 'report':
+            return redirect(url_for('main.mine'))
     item_value = getattr(g.info, item) or 80
     return tpl("item.html", item=item,
                item_name=item_names[item],
