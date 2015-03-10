@@ -31,8 +31,8 @@
   .btn-left, .btn-right{ display: block; margin-top: 12%; width: 6%; z-index: 20; }
   .btn-left{ float: left; margin-left: 5%; }
   .btn-right{ float: right; margin-right: 5%; }
-  .page-desc{ position: absolute; width: 100%; bottom: 25%; left: 0; background: rgba(255, 102, 0, 0.5); z-index: 100; text-align: center; }
-  .page-foot{ position: absolute; width: 100%; top: 75%; min-height: 25%; left: 0; background: #E6E6E6; background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/面板0308.png"); background-size: 100%; background-repeat: no-repeat; box-shadow:0px -4px 10px #333; z-index: 100;}
+  .page-desc{ display: none; position: absolute; width: 100%; bottom: 25%; left: 0; background: rgba(255, 102, 0, 0.5); z-index: 100; text-align: center; }
+  .page-foot{ display: none; position: absolute; width: 100%; top: 75%; min-height: 25%; left: 0; background: #E6E6E6; background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/面板0308.png"); background-size: 100%; background-repeat: no-repeat; box-shadow:0px -4px 10px #333; z-index: 100;}
   .description-words{ height: 16px; padding: 4px; }
   .page-head div{ display: inline-block; color: white; line-height: 26px; font-size: 14px; }
   .page-title{ color: white; margin-top: 4px; margin-left: 4%; line-height: 26px; font-size: 18px; font-weight: lighter; }
@@ -90,6 +90,12 @@
         $("form").submit();
     });
   });
+  var oldOnload = window.onload || function () {};
+  window.onload = function ()
+  {
+    $(".page-desc").show();
+    $(".page-foot").show();
+  }
   </script>
 </body>
 </html>
