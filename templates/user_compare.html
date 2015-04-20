@@ -6,13 +6,14 @@
 
 {% block content %}
 <style>
+a{ text-decoration: none; }
 .page{ background-image: url("http://7x2vyz.com1.z0.glb.clouddn.com/身材表_背景.png"); background-size: 100%; background-repeat: no-repeat; }
 .page-head{ display: absolute; top: 0; left: 0; width: 100%; height: 28px; background: #FC9251; }
 .page-content{ display: inline-block; width: 42%; margin-top: 10%; margin-left: 12%; background: transparent; }
 .page-compare{ display: inline-block; float: right; width: 30%; margin-top: 10%; margin-right: 12%; background: transparent; }
-.item-box{ margin-top: 2px; color: white; line-height: 20px; font-size: 18px; font-weight: lighter; height: 26px; }
-.item-title{ width: 30%; padding: 3px; margin-left: 5%; text-align: justify; display: inline-block; }
-.item-value{ width: 45%; padding: 3px; text-align: right; display: inline-block; }
+.item-box{ margin-top: 2px; color: white; line-height: 20px; font-size: 16px; font-weight: lighter; height: 26px; }
+.item-title{ width: 40%; padding-top: 4px; text-align: center; display: inline-block; }
+.item-value{ width: 45%; padding-top: 4px; text-align: right; display: inline-block; }
 .page-compare .canshu-box{ height: 82px; width: 100%; }
 .canshu-box .item-title{ display: inline-block; width: 40%; margin: 0; font-size: 18px; line-height: 32px; text-align: center; }
 .page-compare .item-biaozhun{ width: 30%; padding: 3px; margin-left: 4%; text-align: justify; display: inline-block; }
@@ -33,6 +34,82 @@
         <img class="head-icon" src="http://7x2vyz.com1.z0.glb.clouddn.com/logo.png"/>
         <img class="head-share" src="http://7x2vyz.com1.z0.glb.clouddn.com/aa纸飞机x.png"/>
       </div>
+      {% if g.info and g.info == info %}
+      <div class="page-content">
+	    <a href="{{url_for('main.base_info')}}">
+          <div class="item-box" style="background:#FC6622;">
+              <span class="item-title">昵称</span>
+              <span class="item-value" style="text-align: center;">{{info.weixin_name or ""}}</span>
+          </div>
+          <div class="item-box" style="background:#FC6622;">
+              <span class="item-title">性别</span>
+              <span class="item-value" style="text-align: center;">{{info.sex_name}}</span>
+          </div>
+           <div class="item-box" style="background:#FC6622;">
+              <span class="item-title">身高</span>
+              <span class="item-value">{{info.height or ""}} cm</span>
+          </div>
+           <div class="item-box" style="background:#97040C;">
+              <span class="item-title">体重</span>
+              <span class="item-value">{{info.weight or ""}} k g</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='neck')}}">
+           <div class="item-box" style="background:#97040C;">
+               <span class="item-title">颈围</span>
+              <span class="item-value">{{info.neck or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='chest')}}">
+           <div class="item-box" style="background:#B01C10;">
+              <span class="item-title">胸围</span>
+              <span class="item-value">{{info.chest or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='waist')}}">
+           <div class="item-box" style="background:#CA3415;">
+              <span class="item-title">腰围</span>
+              <span class="item-value">{{info.waist or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='butt')}}">
+          <div class="item-box" style="background:#E34D1B;">
+              <span class="item-title">臀围</span>
+              <span class="item-value">{{info.butt or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='leg_width')}}">
+           <div class="item-box" style="background:#FC6621;">
+              <span class="item-title">大腿围</span>
+              <span class="item-value">{{info.leg_width or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='leg_length')}}">
+           <div class="item-box" style="background:#FD7F2D;">
+              <span class="item-title">腿长</span>
+              <span class="item-value">{{info.leg_length or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='arm_width')}}">
+           <div class="item-box" style="background:#FD9840;">
+              <span class="item-title">上臂围</span>
+              <span class="item-value">{{info.arm_width or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='arm_length')}}">
+           <div class="item-box" style="background:#FDB156;">
+              <span class="item-title">臂长</span>
+              <span class="item-value">{{info.arm_length or ""}} cm</span>
+          </div>
+        </a>
+	    <a href="{{url_for('main.item_form', item='shoulder')}}">
+           <div class="item-box" style="background:#FECB6E;">
+              <span class="item-title">肩宽</span>
+              <span class="item-value">{{info.shoulder or ""}} cm</span>
+          </div>
+        </a>
+      </div>
+      {% else %}
       <div class="page-content">
           <div class="item-box" style="background:#FC6622;">
               <span class="item-title">昵称</span>
@@ -67,7 +144,7 @@
               <span class="item-value">{{info.butt or ""}} cm</span>
           </div>
            <div class="item-box" style="background:#FC6621;">
-              <span class="item-title">腿围</span>
+              <span class="item-title">大腿围</span>
               <span class="item-value">{{info.leg_width or ""}} cm</span>
           </div>
            <div class="item-box" style="background:#FD7F2D;">
@@ -75,7 +152,7 @@
               <span class="item-value">{{info.leg_length or ""}} cm</span>
           </div>
            <div class="item-box" style="background:#FD9840;">
-              <span class="item-title">臂围</span>
+              <span class="item-title">上臂围</span>
               <span class="item-value">{{info.arm_width or ""}} cm</span>
           </div>
            <div class="item-box" style="background:#FDB156;">
@@ -87,6 +164,7 @@
               <span class="item-value">{{info.shoulder or ""}} cm</span>
           </div>
       </div>
+      {% endif %}
     <div class="page-compare">
           <div class="item-box canshu-box" style="background:#FC6622;">
               <span class="item-title">魔</span>
@@ -178,18 +256,6 @@
               <span class="item-chazhi">0</span>
               {% endif %}	
           </div>
-           <div class="item-box" style="background:#6DFD6E;">
-              <span class="item-biaozhun">{{info.biaozhun_arm_length or ""}}</span>
-              {% if info.arm_length > info.biaozhun_arm_length %}	
-              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
-              <span class="item-chazhi">{{info.arm_length - info.biaozhun_arm_length}}</span>
-              {% elif info.arm_length < info.biaozhun_arm_length %}	
-              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
-              <span class="item-chazhi">{{info.biaozhun_arm_length - info.arm_length}}</span>
-              {% else %}
-              <span class="item-chazhi">0</span>
-              {% endif %}	
-          </div>
            <div class="item-box" style="background:#9CFD6F;">
               <span class="item-biaozhun">{{info.biaozhun_arm_width or ""}}</span>
               {% if info.arm_width > info.biaozhun_arm_width %}	
@@ -198,6 +264,18 @@
               {% elif info.arm_width < info.biaozhun_arm_width %}	
               <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
               <span class="item-chazhi">{{info.biaozhun_arm_width - info.arm_width}}</span>
+              {% else %}
+              <span class="item-chazhi">0</span>
+              {% endif %}	
+          </div>
+           <div class="item-box" style="background:#6DFD6E;">
+              <span class="item-biaozhun">{{info.biaozhun_arm_length or ""}}</span>
+              {% if info.arm_length > info.biaozhun_arm_length %}	
+              <img class="item-jiantou" src="/static/resources/对照表/up箭头.png"/>
+              <span class="item-chazhi">{{info.arm_length - info.biaozhun_arm_length}}</span>
+              {% elif info.arm_length < info.biaozhun_arm_length %}	
+              <img class="item-jiantou" src="/static/resources/对照表/down箭头.png"/>
+              <span class="item-chazhi">{{info.biaozhun_arm_length - info.arm_length}}</span>
               {% else %}
               <span class="item-chazhi">0</span>
               {% endif %}	

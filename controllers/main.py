@@ -9,23 +9,23 @@ item_names = {
     'neck': u"颈围",
     'shoulder': u"肩宽",
     'arm_length': u"臂长",
-    'arm_width': u"臂围",
+    'arm_width': u"上臂围",
     'chest': u"胸围",
     'waist': u"腰围",
     'butt': u"臀围",
     'leg_length': u"腿长",
-    'leg_width': u"腿围"
+    'leg_width': u"大腿围"
 }
 item_header_names = {
     'neck': u"量颈围 9/9",
     'shoulder': u"量肩宽 6/9",
     'arm_length': u"量臂长 7/9",
-    'arm_width': u"量臂围 8/9",
+    'arm_width': u"量上臂围 8/9",
     'chest': u"量胸围 1/9",
     'waist': u"量腰围 2/9",
     'butt': u"量臀围 3/9",
     'leg_length': u"量腿长 4/9",
-    'leg_width': u"量腿围 5/9"
+    'leg_width': u"量大腿围 5/9"
 }
 items = ['chest', 'waist', 'butt', 'leg_length', 'leg_width', 'shoulder', 'arm_length', 'arm_width', 'neck']
 items_length = len(items)
@@ -33,7 +33,7 @@ items_length = len(items)
 
 @main_bp.route('/', methods=['GET'])
 def index():
-    if g.info.height:
+    if g.info.height and g.info.birthday:
         return redirect(url_for('main.user_info', weixin_id=g.info.weixin_id))
     else:
         return redirect(url_for('main.slide'))
@@ -88,7 +88,10 @@ def item_form(item):
 
 @main_bp.route('/mine/', methods=['GET'])
 def mine():
-    return redirect(url_for('main.user_info', weixin_id=g.info.weixin_id))
+    if g.info.height and g.info.birthday and g.info.weixin_name:
+        return redirect(url_for('main.user_info', weixin_id=g.info.weixin_id))
+    else:
+        return redirect(url_for('main.base_info'))
 
 
 @main_bp.route('/u/<weixin_id>/', methods=['GET'])
@@ -96,6 +99,8 @@ def user_info(weixin_id):
     info = Info.get_by_weixin(weixin_id)
     if not info:
         abort(404)
+    if not info.height or not info.birthday:
+        return redirect(url_for('main.base_info'))
     return tpl("user_info.html", info=info)
 
 
@@ -104,4 +109,6 @@ def user_compare(weixin_id):
     info = Info.get_by_weixin(weixin_id)
     if not info:
         abort(404)
+    if not info.height or not info.birthday:
+        return redirect(url_for('main.base_info'))
     return tpl("user_compare.html", info=info)
