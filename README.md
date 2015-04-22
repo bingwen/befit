@@ -1,0 +1,1 @@
+测试一下修改 .git/config 里的 remote url 效果。LEE
