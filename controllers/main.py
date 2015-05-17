@@ -1,7 +1,11 @@
 # -*- coding: UTF-8 -*-
 import datetime
+import time
+import hashlib
+
 from flask import Blueprint, request, abort, url_for, redirect, g
 from flask import render_template as tpl
+from flask import current_app as app
 from models.info import Info
 
 main_bp = Blueprint('main', __name__, template_folder='../templates/main')
@@ -33,10 +37,19 @@ items_length = len(items)
 
 @main_bp.route('/', methods=['GET'])
 def index():
-    if g.info.height and g.info.birthday:
-        return redirect(url_for('main.user_info', weixin_id=g.info.weixin_id))
-    else:
-        return redirect(url_for('main.slide'))
+    return tpl("show.html", data=request.url)
+    # if g.info.height and g.info.birthday:
+    #     return redirect(url_for('main.user_info', weixin_id=g.info.weixin_id))
+    # else:
+    #     return redirect(url_for('main.slide'))
+
+
+@main_bp.route('/address', methods=['GET'])
+def address():
+    time_ = int(time.time())
+    data = 'accesstoken=' + g.identification[2] + '&appid=' + app.config['WEIXIN_AK'] + '&noncestr=12345&timestamp=' + str(time_) + '&url=' + request.url
+    addrSign = hashlib.sha1(data).hexdigest()
+    return tpl("address.html", appID=app.config['WEIXIN_AK'], addrSign=addrSign, data=data, time_=time_)
 
 
 @main_bp.route('/slide', methods=['GET'])

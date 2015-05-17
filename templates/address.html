@@ -1,0 +1,64 @@
+<!DOCTYPE HTML> 
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>地址管理</title>
+  <meta name="description" content='求合身' />
+  <meta name="viewport" content="user-scalable=no, width=device-width, height=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="求合身"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="shortcut icon" type="image/ico" href="" />
+  <link rel="apple-touch-icon-precomposed" href="" />
+  <meta name="renderer" content="webkit">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="Sun, 6 Mar 2014 01:00:00 GMT">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>  
+</head>
+
+<body>
+    <div id = 'error'>
+    </div>
+    <div id = 'data'>
+        正在跳转微信收获地址管理
+    </div>
+    <script>      
+      try{
+      function onBridgeReady(){
+  WeixinJSBridge.call('hideOptionMenu');
+          WeixinJSBridge.invoke('editAddress', {
+                  "appId": "{{appID}}",
+                  "scope": "jsapi_address",
+                  "signType": "sha1",
+                  "addrSign": "{{addrSign}}",
+                  "timeStamp": "{{time_}}",
+                  "nonceStr": "12345",
+              }, function (res) {
+              //若res 中所带的返回值不为空，则表示用户选择该返回值作为收货地址。
+              //否则若返回空，则表示用户取消了这一次编辑收货地址。
+                  $('#data').html("返回中");
+                  WeixinJSBridge.call('closeWindow');
+                   $('#error').html(res.err_msg);
+              });                      
+}
+if (typeof WeixinJSBridge == "undefined"){
+       if( document.addEventListener ){
+           document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+       }else if (document.attachEvent){
+           document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+           document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+       }
+}else{
+       onBridgeReady();
+} 
+      }catch (e) {
+          $('#error').html(e.name + ": " + e.message);
+      }  
+ </script> 
+</body>    
+</html>

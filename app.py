@@ -16,11 +16,37 @@ login_manager.init_app(app)
 login_manager.login_view = "user.login"
 
 
-@login_manager.user_loader
-def load_user(userid):
-    from models.info import Info
-    return Info.get_by_weixin(userid) or None
+# @login_manager.user_loader
+# def load_user(userid):
+#     from models.info import Info
+#     return Info.get_by_weixin(userid) or None
 
+
+# @app.before_request
+# def request_user():
+#     if current_user and current_user.is_authenticated():
+#         g.info = current_user
+#     else:
+#         if request.path.startswith(u'/m/u/') or request.path.startswith(u'/static/') or request.path.startswith(u'/admin'):
+#             pass
+#         else:
+#             code = request.values.get('code')
+#             if code:
+#                 from models.info import Info
+#                 from libs.weixin import get_weixin_user_openid
+#                 openid = get_weixin_user_openid(code)
+#                 if openid:
+#                     info = Info.get_by_weixin(openid)
+#                     if not info:
+#                         info = Info.add(openid)
+#                     login_user(info)
+#                     g.info = info
+#                 else:
+#                     return u"微信登录失败啦"
+#             else:
+#                 from libs.weixin import get_weixin_login_url
+#                 login_url = get_weixin_login_url(request.url)
+#                 return redirect(login_url)
 
 @app.before_request
 def request_user():
@@ -33,25 +59,27 @@ def request_user():
             code = request.values.get('code')
             if code:
                 from models.info import Info
-                from libs.weixin import get_weixin_user_openid
-                openid = get_weixin_user_openid(code)
-                if openid:
-                    info = Info.get_by_weixin(openid)
-                    if not info:
-                        info = Info.add(openid)
-                    login_user(info)
-                    g.info = info
+                from libs.weixin import get_weixin_user_identification
+                identification = get_weixin_user_identification(code)
+                if identification:
+                    g.identification = identification
                 else:
                     return u"微信登录失败啦"
             else:
                 from libs.weixin import get_weixin_login_url
                 login_url = get_weixin_login_url(request.url)
+                print request.url
                 return redirect(login_url)
 
 
 @app.route('/')
 def index():
     return redirect(url_for("main.index"))
+
+
+@app.route('/address')
+def address():
+    return redirect(url_for("main.address"))
 
 # urls
 register_blueprint(app)
