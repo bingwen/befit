@@ -35,12 +35,15 @@
 
   <script>
   function get_code(){
-        $.getJSON('/user/get_code', {
+        $.getJSON('/user/signin', {
         signin_code: 'get_code',
       }, function(result) {
-        if(result[''] == 'ok')
-        else
+        if(result['status'] == 'ok'){
+          $('#error').html('');
+        }
+        else{
           $('#error').html('获取验证码错误');
+        }
       });
   }
   </script>

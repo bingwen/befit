@@ -17,4 +17,4 @@ def get_weixin_user_identification(code):
     response = urllib2.urlopen(token_url)
     html = response.read()
     json_info = json.loads(html)
-    return {'openid' = json_info.get('openid'), 'unionid' = json_info.get('unionid'), 'user_token' = json_info.get('access_token')}
+    return {'openid': json_info.get('openid'), 'unionid': json_info.get('unionid'), 'user_token': json_info.get('access_token')}

@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-from flask import url_for, redirect, request, g
+from flask import url_for, redirect, request, g, session
 from flask.ext.login import LoginManager, current_user, login_user
 
 from factory import create_app
@@ -30,21 +30,18 @@ def request_user():
         pass
     elif request.remote_addr == '127.0.0.1':
         user = User.get_by_id('local_test')
-        login_user(user)
-        g.user = user
         return redirect(url_for("user.signin"))
     else:
-        return
         code = request.values.get('code')
         if code:
             from libs.weixin import get_weixin_user_identification
             identification = get_weixin_user_identification(code)
             if identification:
-                g.identification = identification
+                session['identification'] = identification
                 if request.path.startswith(u'/address') or request.path.startswith(u'/static/'):
                     pass
                 else:
-                    user = User.get_by_id(g.identification['openid'])
+                    user = User.get_by_id(session['identification']['openid'])
                     if not user:
                         return redirect(url_for("user.signin"))
                     login_user(user)
@@ -76,4 +73,4 @@ register_blueprint(app)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8080)
