@@ -6,6 +6,7 @@ from factory import create_app
 from urls import register_blueprint
 from config import config_object
 
+from models.user import User
 
 app = create_app(config_object)
 
@@ -16,60 +17,44 @@ login_manager.init_app(app)
 login_manager.login_view = "user.login"
 
 
-# @login_manager.user_loader
-# def load_user(userid):
-#     from models.info import Info
-#     return Info.get_by_weixin(userid) or None
+@login_manager.user_loader
+def load_user(userid):
+    return User.get_by_id(userid) or None
 
-
-# @app.before_request
-# def request_user():
-#     if current_user and current_user.is_authenticated():
-#         g.info = current_user
-#     else:
-#         if request.path.startswith(u'/m/u/') or request.path.startswith(u'/static/') or request.path.startswith(u'/admin'):
-#             pass
-#         else:
-#             code = request.values.get('code')
-#             if code:
-#                 from models.info import Info
-#                 from libs.weixin import get_weixin_user_openid
-#                 openid = get_weixin_user_openid(code)
-#                 if openid:
-#                     info = Info.get_by_weixin(openid)
-#                     if not info:
-#                         info = Info.add(openid)
-#                     login_user(info)
-#                     g.info = info
-#                 else:
-#                     return u"微信登录失败啦"
-#             else:
-#                 from libs.weixin import get_weixin_login_url
-#                 login_url = get_weixin_login_url(request.url)
-#                 return redirect(login_url)
 
 @app.before_request
 def request_user():
     if current_user and current_user.is_authenticated():
-        g.info = current_user
+        g.user = current_user
+    elif request.path.startswith(u'/user/signin'):
+        pass
+    elif request.remote_addr == '127.0.0.1':
+        user = User.get_by_id('local_test')
+        login_user(user)
+        g.user = user
+        return redirect(url_for("user.signin"))
     else:
-        if request.path.startswith(u'/m/u/') or request.path.startswith(u'/static/') or request.path.startswith(u'/admin'):
-            pass
-        else:
-            code = request.values.get('code')
-            if code:
-                from models.info import Info
-                from libs.weixin import get_weixin_user_identification
-                identification = get_weixin_user_identification(code)
-                if identification:
-                    g.identification = identification
+        return
+        code = request.values.get('code')
+        if code:
+            from libs.weixin import get_weixin_user_identification
+            identification = get_weixin_user_identification(code)
+            if identification:
+                g.identification = identification
+                if request.path.startswith(u'/address') or request.path.startswith(u'/static/'):
+                    pass
                 else:
-                    return u"微信登录失败啦"
+                    user = User.get_by_id(g.identification['openid'])
+                    if not user:
+                        return redirect(url_for("user.signin"))
+                    login_user(user)
+                    g.user = user
             else:
-                from libs.weixin import get_weixin_login_url
-                login_url = get_weixin_login_url(request.url)
-                print request.url
-                return redirect(login_url)
+                return u"微信登录失败啦"
+        else:
+            from libs.weixin import get_weixin_login_url
+            login_url = get_weixin_login_url(request.url)
+            return redirect(login_url)
 
 
 @app.route('/')
@@ -81,9 +66,14 @@ def index():
 def address():
     return redirect(url_for("main.address"))
 
+
+@app.route('/figure')
+def figure():
+    return redirect(url_for("user.figure"))
+
 # urls
 register_blueprint(app)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8008)
+    app.run(host='0.0.0.0', port=8000)

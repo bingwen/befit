@@ -2,7 +2,7 @@ class Config(object):
     SECRET_KEY = 'your key'
     DEBUG = True
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://vagrant:vagrant@localhost/befit'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://userquanmin:admin123456@localhost/quanmindb'
 
     SENTRY_DSN = ''
     DOMAIN = ''
