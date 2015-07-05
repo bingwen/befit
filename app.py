@@ -29,8 +29,8 @@ def request_user():
     elif request.path.startswith(u'/user/signin'):
         pass
     elif request.remote_addr == '127.0.0.1':
-        user = User.get_by_id('local_test')
-        return redirect(url_for("user.signin"))
+        g.user = User.get_by_id('local_test')
+        login_user(g.user)
     else:
         code = request.values.get('code')
         if code:
@@ -43,7 +43,7 @@ def request_user():
                 else:
                     user = User.get_by_id(session['identification']['openid'])
                     if not user:
-                        return redirect(url_for("user.signin"))
+                        return redirect(url_for("user.signin", next=request.url))
                     login_user(user)
                     g.user = user
             else:

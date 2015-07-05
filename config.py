@@ -8,6 +8,7 @@ class Config(object):
     DOMAIN = ''
     WEIXIN_AK = 'wx7ca8bfd8ecc57ddf'
     WEIXIN_SK = 'ae9b465ff9c2053aefce3da46c234486'
+    API_DOMIN = 'http://localhost:8090/api/v0.1/'
 
 
 class TestingConfig(Config):

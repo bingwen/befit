@@ -32,62 +32,50 @@
     .red-words{position: absolute; bottom: 0px; left: 50%; margin-left: -140px; width: 280px; transform: translate(0, 0);}
     .join-btn{position: absolute; bottom: 10%; left: 50%; margin-left: -12%; width: 24%;}
   </style>
-
-  <script>
-  function get_code(){
-        $.getJSON('/user/get_code', {
-        signin_code: 'get_code',
-      }, function(result) {
-        if(result[''] == 'ok')
-        else
-          $('#error').html('获取验证码错误');
-      });
-  }
-  </script>
-
 </head>
+
 <body>
   <div class="swiper-container">
     <form method="POST">
      <div>
        <label>身高 ：</label>
-       <input type="text" name="phone_number" value=100>
-     </div>
-     <div>
-       <label>体重：</label>
-       <input type="text" name="signin_code" value=50>
+       <input type="number" name="height" value={{figure.height}}>
      </div>
      <div>
        <label>颈围：</label>
-       <input type="text" name="signin_code" value=50>
-     </div>
-     <div>
-       <label>胸围：</label>
-       <input type="text" name="signin_code" value=50>
+       <input type="number" name="neck" value={{figure.neck}}>
      </div>
      <div>
        <label>腰围：</label>
-       <input type="text" name="signin_code" value=50>
-     </div>
-     <div>
-       <label>臀围：</label>
-       <input type="text" name="signin_code" value=50>
+       <input type="number" name="waist" value={{figure.waist}}>
      </div>
      <div>
        <label>上臂围：</label>
-       <input type="text" name="signin_code" value=50>
-     </div>
-     <div>
-       <label>大腿围：</label>
-       <input type="text" name="signin_code" value=50>
+       <input type="number" name="arm_length" value={{figure.arm_length}}>
      </div>
      <div>
        <label>腿长：</label>
-       <input type="text" name="signin_code" value=50>
-     </div>
+       <input type="number" name="leg_length" value={{figure.leg_length}}>
+     </div>     
+     <div>
+       <label>胸围：</label>
+       <input type="number" name="chest" value={{figure.chest}}>
+     </div>     
+     <div>
+       <label>臀围：</label>
+       <input type="number" name="butt" value={{figure.butt}}>
+     </div>     
+     <div>
+       <label>大腿围：</label>
+       <input type="number" name="leg_width" value={{figure.leg_width}}>
+     </div>     
      <div>
        <label>臂长：</label>
-       <input type="text" name="signin_code" value=50>
+       <input type="number" name="arm_width" value={{figure.arm_width}}>
+     </div>
+     <div>
+       <label>肩宽：</label>
+       <input type="number" name="shoulder" value={{figure.shoulder}}>
      </div>
      <button>确认修改</button>
     </form>
