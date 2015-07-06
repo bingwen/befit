@@ -25,16 +25,16 @@ elementVerticalCentralize($('#mobile-box img'), $('#mobile-box'));
 
 /**验证码发送按钮相关*/
 
-var WAITING_SECONDS = 5; // TODO 一个配置项
+var WAITING_SECONDS = 11; // TODO 一个配置项
 var remainTime = 0; // 亟需闭包姿势 TODO
 var timer;
 var startCodeWaiting = function (duration) {
     $('#send-code').unbind('click');
     remainTime = WAITING_SECONDS;
-    $('#send-code').html('重发（' + remainTime + 's）').css('color','grey');
+    $('#send-code').html('重新发送(' + remainTime + 's)').css('color','grey');
     var tick = function () {
         remainTime--;
-        $('#send-code').html('重发（' + remainTime + 's）');
+        $('#send-code').html('重新发送(' + remainTime + 's)');
     };
     timer = setInterval(tick, 1000);
     setTimeout(function () {
