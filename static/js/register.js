@@ -1,17 +1,3 @@
-var sendCode = function () {
-    $.getJSON('/user/signin', {
-        signin_code: 'get_code'
-    }, function (result) {
-        if (result['status'] == 'ok') {
-            $('#error').html('获取验证码成功');
-        }
-        else {
-            $('#error').html('获取验证码错误');
-        }
-    });
-};
-
-$('#send-code').click(sendCode);
 
 // 裸代码可以作为一种核心注释：揭示「目的」的注释，aka「为何如此这般进行抽象」之注释。
 //文字垂直居中，杭神法
@@ -36,3 +22,40 @@ var elementVerticalCentralize = function (element, container) {
 textVerticalCentralize($('#send-code'));
 elementVerticalCentralize($('#mobile-box img'), $('#mobile-box'));
 
+
+/**验证码发送按钮相关*/
+
+var WAITING_SECONDS = 5; // TODO 一个配置项
+var remainTime = 0; // 亟需闭包姿势 TODO
+var timer;
+var startCodeWaiting = function (duration) {
+    $('#send-code').unbind('click');
+    remainTime = WAITING_SECONDS;
+    $('#send-code').html('重发（' + remainTime + 's）').css('color','grey');
+    var tick = function () {
+        remainTime--;
+        $('#send-code').html('重发（' + remainTime + 's）');
+    };
+    timer = setInterval(tick, 1000);
+    setTimeout(function () {
+        clearInterval(timer);
+        $('#send-code').click(sendCode).html('发送验证码').css('color','black');
+    }, WAITING_SECONDS * 1000);
+};
+
+var sendCode = function () {
+    startCodeWaiting();
+    $.getJSON('/user/signin', {
+        signin_code: 'get_code'
+    }, function (result) {
+        if (result['status'] == 'ok') {
+            $('#error').html('获取验证码成功');
+        }
+        else {
+            $('#error').html('获取验证码错误');
+        }
+    });
+};
+$('#send-code').click(sendCode);
+
+/** / 验证码发送按钮相关*/
