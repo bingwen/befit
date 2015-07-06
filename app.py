@@ -26,7 +26,7 @@ def load_user(userid):
 def request_user():
     if current_user and current_user.is_authenticated():
         g.user = current_user
-    elif request.path.startswith(u'/user/signin'):
+    elif request.path.startswith(u'/user/signin') or request.path.startswith(u'/static/'):
         pass
     elif request.remote_addr == '127.0.0.1':
         # g.user = User.get_by_id('local_test')
@@ -39,7 +39,7 @@ def request_user():
             identification = get_weixin_user_identification(code)
             if identification:
                 session['identification'] = identification
-                if request.path.startswith(u'/address') or request.path.startswith(u'/static/'):
+                if request.path.startswith(u'/address'):
                     pass
                 else:
                     user = User.get_by_id(session['identification']['openid'])

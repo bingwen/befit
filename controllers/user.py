@@ -22,7 +22,7 @@ def signin():
         if code == 'get_code':
             session['code'] = '1234'
             return jsonify({'status': 'ok'})
-        return tpl('signin.html')
+        return tpl('register.html')
     elif request.method == 'POST':
         code = request.form.get('signin_code', 0, type=str)
         phone_number = request.form.get('phone_number', 0, type=str)
@@ -33,7 +33,7 @@ def signin():
                             phone_number=phone_number)
             login_user(user)
             return redirect(request.args.get("next", "/"))
-        return tpl('signin.html', error=u'验证错误')
+        return tpl('register.html', error=u'验证错误')
 
 
 @user_bp.route('/figure', methods=['GET', 'POST'])

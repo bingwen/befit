@@ -1,0 +1,48 @@
+/*derive from befit's base.css 2015-06-16 17:46:05 LEE*/
+
+body {
+    /*background-color: white;*/
+    margin: 0;
+    zoom: 100%;
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+
+/*阿炳写的，禁止选中什么的？没研究TODO*/
+html, body {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+a, img {
+    -webkit-touch-callout: none;
+}
+
+a, img, input, select {
+    -webkit-appearance: none;
+}
+
+/*.pages{*/
+/*height: 100%;*/
+/*}*/
+/*.page{*/
+/*background: white;*/
+/*width: 100%;*/
+/*}*/
+
+/** 下：从size.css中抽取 2015-06-30 16:17:09*/
+
+.clear-fix {
+    clear: both;
+}
+
+/*#control-box:after{*/
+/*/!*http://www.w3school.com.cn/css/css_positioning_floating.asp*!/*/
+/*clear: both;*/
+/*}*/
+
+body {
+    width: 980px; /*TODO depends on clientWidth*/
+    /*width: expression(document.body.offsetWidth + "px");*/
+
+    /*border:solid 1px;*/
+}
