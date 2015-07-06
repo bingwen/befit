@@ -8,9 +8,10 @@
     <meta name="author" content="cy, cylily93@gmail.com">
     <meta name="description" content='全民限定'/>
     <!--TODO 那个数究竟是多少…… chrome写着0.4的有好几个大小-->
-    <meta name="viewport" content="user-scalable=no">
     <!--<meta name="viewport"-->
     <!--content="user-scalable=no, width=device-width, height=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">-->
+    <!--卧槽，让丫直接禁止缩放，然后用默认比例 有奇效 2015-07-06 17:05:37-->
+    <meta name="viewport" content="user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="全民限定">
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -36,28 +37,30 @@
         <!-- TODO UE：验证码不记忆，若为纯数字则默认数字键盘；手机号记忆（type=tel即可吗？）-->
         <div id="mobile-box">
             <label for="mobile">手机号：</label>
-            <input type="tel" name="mobile" id="mobile" placeholder="请输入正确的11位手机号码">
+            <input type="tel" name="phone_number" id="mobile" placeholder="请输入正确的11位手机号码">
             <img src="/static/res/people.png">
             <!--<div class="clear-fix"></div>-->
         </div>
 
         <div id="code-box">
             <div id="code-input-box">
-                <label for="code">验证码：</label><input type="text" name="code" id="code" placeholder="请输入验证码">
+                <label for="code">验证码：</label><input type="text" name="signin_code" id="code" placeholder="请输入验证码">
             </div>
             <div id="code-button-box">
                 <div id="send-code">
                     <span>发送验证码</span>
                 </div>
             </div>
-
         </div>
-
 
         <div id="register-box">
             <input type="submit" value="注册" id="register">
         </div>
-
+        <div id="error">
+            {% if error %}
+            {{ error }}
+            {% endif %}
+        </div>
     </form>
 
 

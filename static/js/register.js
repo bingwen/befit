@@ -3,13 +3,12 @@ var sendCode = function () {
         signin_code: 'get_code'
     }, function (result) {
         if (result['status'] == 'ok') {
-            $('#error').html('');
+            $('#error').html('获取验证码成功');
         }
         else {
             $('#error').html('获取验证码错误');
         }
     });
-    alert('已向您的手机发送验证码（并没有');
 };
 
 $('#send-code').click(sendCode);

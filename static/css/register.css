@@ -128,3 +128,8 @@ body {
     color: white;
     border-radius: 15px;
 }
+
+#error{
+    color: red;
+    font-size: 48px;
+}
