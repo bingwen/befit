@@ -67,7 +67,7 @@ def figure():
                 leg_width=50,
                 arm_width=50,
                 shoulder=50)
-        return tpl('figure.html', figure=figure)
+        return tpl('size.html', figure=figure)
     elif request.method == 'POST':
         print request.form
         figure = Figure(
@@ -88,6 +88,6 @@ def figure():
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
         response = opener.open(req, data)
         if json.loads(response.read()).get('status') == 200:
-            return tpl('figure.html', figure=figure, status='success')
+            return tpl('size.html', figure=figure, status='success')
         else:
-            return tpl('figure.html', figure=figure, status='fail')
+            return tpl('size.html', figure=figure, status='fail')
