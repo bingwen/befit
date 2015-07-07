@@ -19,55 +19,55 @@ var measureList = [
         name: "胸围",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 140
     },
     {
         name: "颈围",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 50
     },
     {
         name: "臀围",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 140
     },
     {
         name: "腰围",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 140
     },
     {
         name: "大腿围",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 70
     },
     {
         name: "上臂围",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 40
     },
     {
         name: "臂长",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 80
     },
     {
         name: "腿长",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 120
     },
     {
         name: "肩宽",
         unit: "cm",
         min: 0,
-        max: 160
+        max: 60
     }
 ];
 
