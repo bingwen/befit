@@ -1,9 +1,0 @@
-<uwsgi>
-     <pythonpath>/home/lily/work/befit/befit</pythonpath> #网站根目录
-     <module>app</module>     #Flask的主入口文件，平时是直接运行这个文件启动测试服务器的
-     <callable>app</callable>   #app.py入口文件里的程序入口
-     <socket>127.0.0.1:8080</socket>       #监听端口
-     <master/>
-     <processes>5</processes>                #注：跑几个线程，这里用4个线程
-     <memory-report/>
-</uwsgi>
