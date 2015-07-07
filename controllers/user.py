@@ -57,7 +57,7 @@ def figure():
                 shoulder=json_info.get('shoulder'))
         else:
             figure = Figure(
-                height=80,
+                height=95,
                 neck=25,
                 waist=70,
                 arm_length=40,
