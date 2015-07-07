@@ -1,0 +1,34 @@
+*** Starting uWSGI 1.9.17.1-debian (64bit) on [Mon Jul  6 21:48:36 2015] ***
+compiled with version: 4.8.2 on 23 March 2014 17:15:32
+os: Linux-3.13.0-39-generic #66-Ubuntu SMP Tue Oct 28 13:30:27 UTC 2014
+nodename: lily-Lenovo-IdeaPad-Y410P
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/lily/work/befit/befit
+detected binary path: /usr/bin/uwsgi-core
+your processes number limit is 63043
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 763]
+*** Starting uWSGI 1.9.17.1-debian (64bit) on [Mon Jul  6 22:05:39 2015] ***
+compiled with version: 4.8.2 on 23 March 2014 17:15:32
+os: Linux-3.13.0-39-generic #66-Ubuntu SMP Tue Oct 28 13:30:27 UTC 2014
+nodename: lily-Lenovo-IdeaPad-Y410P
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/lily/work/befit/befit
+detected binary path: /usr/bin/uwsgi-core
+your processes number limit is 63043
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8080).
+bind(): Address already in use [core/socket.c line 763]

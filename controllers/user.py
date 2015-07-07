@@ -57,16 +57,16 @@ def figure():
                 shoulder=json_info.get('shoulder'))
         else:
             figure = Figure(
-                height=50,
-                neck=50,
-                waist=50,
-                arm_length=50,
-                leg_length=50,
-                chest=50,
-                butt=50,
-                leg_width=50,
-                arm_width=50,
-                shoulder=50)
+                height=80,
+                neck=25,
+                waist=70,
+                arm_length=40,
+                leg_length=60,
+                chest=70,
+                butt=70,
+                leg_width=35,
+                arm_width=20,
+                shoulder=30)
         return tpl('size.html', figure=figure)
     elif request.method == 'POST':
         print request.form
