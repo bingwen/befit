@@ -95,7 +95,7 @@ def figure():
             return tpl('size.html', figure=figure, status='fail')
 
 
-@main_bp.route('/address', methods=['GET'])
+@user_bp.route('/address', methods=['GET'])
 def address():
     time_ = int(time.time())
     data = 'accesstoken=' + session['identification']['openid'] + '&appid=' + app.config['WEIXIN_AK'] + '&noncestr=12345&timestamp=' + str(time_) + '&url=' + request.url

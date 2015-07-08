@@ -60,11 +60,6 @@ def index():
     return redirect(url_for("main.index"))
 
 
-@app.route('/address')
-def address():
-    return redirect(url_for("main.address"))
-
-
 @app.route('/figure')
 def figure():
     return redirect(url_for("user.figure"))
