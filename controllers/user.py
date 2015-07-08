@@ -2,6 +2,8 @@
 import urllib2
 import urllib
 import json
+import time
+import hashlib
 
 from flask import Blueprint, request, abort, url_for, redirect, session, g
 from flask import render_template as tpl, jsonify
@@ -20,7 +22,7 @@ def signin():
         code = request.args.get('signin_code', 0, type=str)
         phone_number = request.args.get('phone_number', "123456789", type=str)
         if code == 'get_code':
-            session['code'] = '1234'
+            session['code'] = '1234'  # 調用短信接口
             return jsonify({'status': 'ok'})
         return tpl('register.html')
     elif request.method == 'POST':
@@ -91,3 +93,11 @@ def figure():
             return tpl('size.html', figure=figure, status='success')
         else:
             return tpl('size.html', figure=figure, status='fail')
+
+
+@main_bp.route('/address', methods=['GET'])
+def address():
+    time_ = int(time.time())
+    data = 'accesstoken=' + session['identification']['openid'] + '&appid=' + app.config['WEIXIN_AK'] + '&noncestr=12345&timestamp=' + str(time_) + '&url=' + request.url
+    addrSign = hashlib.sha1(data).hexdigest()
+    return tpl("address.html", appID=app.config['WEIXIN_AK'], addrSign=addrSign, data=data, time_=time_)
