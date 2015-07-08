@@ -7,6 +7,19 @@
 //    alert('user-agent: ' + navigator.userAgent)
 //});
 
+//测试 点微信浏览器的返回 回到该页的时候 js 是否会跑一遍
+alert('document.referrer: |'+document.referrer+'|');
+alert('user-agent: ' + navigator.userAgent);
+
+//返回 关闭 等测试
+function testClose(){
+    window.close();
+}
+
+function testBack(){
+    history.back();
+}
+
 
 var measureList = [
     {

@@ -5,6 +5,11 @@
 //// 让#mobile-box img在#mobile-box里垂直居中
 //$('#mobile-box img').css('margin-top', ($('#mobile-box').height() - $('#mobile-box img').height()) / 2 + 'px');
 
+//测试 点微信浏览器的返回 回到该页的时候 js 是否会跑一遍
+alert('document.referrer: |'+document.referrer+'|');
+alert('user-agent: ' + navigator.userAgent);
+
+
 /**
  * 文字垂直居中。
  * ……窝不知道适用范围。依赖jquery。2015-07-04 15:08:08*/
