@@ -97,7 +97,7 @@ def figure():
 
 @user_bp.route('/address', methods=['GET'])
 def address():
-    time_ = int(time.time())
-    data = 'accesstoken=' + session['identification']['openid'] + '&appid=' + app.config['WEIXIN_AK'] + '&noncestr=12345&timestamp=' + str(time_) + '&url=' + request.url
+    time_ = str(int(time.time()))
+    data = 'accesstoken=' + session['identification']['user_token'] + '&appid=' + app.config['WEIXIN_AK'] + '&noncestr=12345&timestamp=' + time_ + '&url=' + request.url
     addrSign = hashlib.sha1(data).hexdigest()
     return tpl("address.html", appID=app.config['WEIXIN_AK'], addrSign=addrSign, data=data, time_=time_)

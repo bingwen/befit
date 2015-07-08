@@ -39,7 +39,7 @@ def request_user():
             identification = get_weixin_user_identification(code)
             if identification:
                 session['identification'] = identification
-                if request.path.startswith(u'/address'):
+                if request.path.startswith(u'/user/address'):
                     pass
                 else:
                     user = User.get_by_id(session['identification']['openid'])

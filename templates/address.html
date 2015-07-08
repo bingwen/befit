@@ -26,6 +26,7 @@
     </div>
     <div id = 'data'>
         正在跳转微信收获地址管理
+        {{data}}
     </div>
     <script>      
       try{
@@ -41,7 +42,7 @@
               }, function (res) {
               //若res 中所带的返回值不为空，则表示用户选择该返回值作为收货地址。
               //否则若返回空，则表示用户取消了这一次编辑收货地址。
-                  $('#data').html("返回中");
+                 // $('#data').html("返回中");
                   //WeixinJSBridge.call('closeWindow');
                    $('#error').html(res.err_msg);
               });                      
