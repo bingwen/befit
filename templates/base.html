@@ -31,9 +31,11 @@
 </head>
 <body>
 <div class="error">
+ <center>
     {% if error %}
         {{ error }}
     {% endif %}
+  </center>
 </div>
   {% block content %}{% endblock %}
   {% block js %}{% endblock %}

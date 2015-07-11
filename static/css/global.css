@@ -50,10 +50,11 @@ body {
 .error{
     height: 50px;
     width: 100%;
+    content: #FFF;
     font-size: 40px;
-    padding: 20px;
+    padding: 25px;
     position: absolute;
     z-index: 5;
-    background-color: red;
+    background-color: rgb(195, 16, 16);
     display: none;
 }

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    if($('.error').html().replace(/(^\s*)|(\s*$)/g, "").length !=0){
+    if($('.error center').html().replace(/(^\s*)|(\s*$)/g, "").length !=0){
         showError($('.error').html());
     }
 });
