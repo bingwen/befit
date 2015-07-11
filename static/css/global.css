@@ -46,3 +46,14 @@ body {
 
     /*border:solid 1px;*/
 }
+
+.error{
+    height: 50px;
+    width: 100%;
+    font-size: 40px;
+    padding: 20px;
+    position: absolute;
+    z-index: 5;
+    background-color: red;
+    display: none;
+}

@@ -53,11 +53,8 @@ var sendCode = function () {
     $.getJSON('/user/signin', {
         signin_code: 'get_code'
     }, function (result) {
-        if (result['status'] == 'ok') {
-            $('#error').html('获取验证码成功');
-        }
-        else {
-            $('#error').html('获取验证码错误');
+        if (result['status'] != 'ok') {
+            showError('获取验证码错误');
         }
     });
 };
