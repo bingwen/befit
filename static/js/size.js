@@ -177,6 +177,27 @@ $('.option-touchable').on('click', function () {
     $('#slider-input').data('current-item-id', tar);
 });
 
+$('#submit').on('click', function () {
+    $.post('/user/figure', {
+        height: $("input[name='height']").val(),
+        neck: $("input[name='neck']").val(),
+        waist: $("input[name='waist']").val(),
+        arm_length: $("input[name='arm_length']").val(),
+        leg_length: $("input[name='leg_length']").val(),
+        chest: $("input[name='chest']").val(),
+        butt: $("input[name='butt']").val(),
+        leg_width: $("input[name='leg_width']").val(),
+        arm_width: $("input[name='arm_width']").val(),
+        shoulder: $("input[name='shoulder']").val()
+    }, function (result) {
+        if (result['status'] == '200') {
+            showError('保存成功', '#8FBC8F');
+        }
+        else {
+            showError('保存出现问题，保存失败')
+        }
+    },"json");//getJSON
+});
 
 /** TODO 该叫 refreshButtonAndDescription 了
  * param:

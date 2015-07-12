@@ -71,7 +71,6 @@ def figure():
                 shoulder=30)
         return tpl('size.html', figure=figure)
     elif request.method == 'POST':
-        print request.form
         figure = Figure(
             height=request.form.get('height', 0, type=int),
             neck=request.form.get('neck', 0, type=int),
@@ -85,14 +84,13 @@ def figure():
             shoulder=request.form.get('shoulder', 0, type=int))
         post_url = app.config['API_DOMIN'] + 'save_figure_by_unionid/' + g.user.weixin_union
         req = urllib2.Request(post_url)
-        print figure.__dict__
         data = urllib.urlencode(figure.__dict__)
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
         response = opener.open(req, data)
         if json.loads(response.read()).get('status') == 200:
-            return tpl('size.html', figure=figure, status='success')
+            return jsonify({'status': '200'})
         else:
-            return tpl('size.html', figure=figure, status='fail')
+            return jsonify({'status': '500'})
 
 
 @user_bp.route('/address', methods=['GET'])
