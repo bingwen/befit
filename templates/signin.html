@@ -1,0 +1,73 @@
+<!DOCTYPE HTML> 
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>加入全名限定</title>
+  <meta name="author" content="cy, cylily93@gmail.com">
+  <meta name="description" content='全名限定' />
+  <meta name="viewport" content="user-scalable=no, width=device-width, height=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="全名限定"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="shortcut icon" type="image/ico" href="" />
+  <link rel="apple-touch-icon-precomposed" href="" />
+  <meta name="renderer" content="webkit">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="x5-orientation" content="portrait">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="Sun, 6 Mar 2014 01:00:00 GMT">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/Swiper/2.7.5/idangerous.swiper.min.css">
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/Swiper/2.7.5/idangerous.swiper.min.js"></script>
+  <script src="http://longo.qiniudn.com/static_jquery.transit.min.js"></script>
+  <style>
+    html, body{position: relative; height: 100%;margin: 0;}
+    .swiper-container{ height: 100%; width: 100%;}
+    .swiper-slide{position: relative; width: 100%; height: 100%; overflow: hidden; }
+    .slide-img{position:absolute; top: 0; left: 50%; height: 100%; width: 1000px; margin-left:-500px; text-align:center;}
+    .slide-img img{position: relative; height: 100%; pointer-events:none}
+    .arrow-up{position: absolute; bottom: 20px; left: 50%; margin-left: -15px; width: 30px; transform: translate(0, 0);}
+    .red-words{position: absolute; bottom: 0px; left: 50%; margin-left: -140px; width: 280px; transform: translate(0, 0);}
+    .join-btn{position: absolute; bottom: 10%; left: 50%; margin-left: -12%; width: 24%;}
+  </style>
+
+  <script>
+  function get_code(){
+        $.getJSON('/user/signin', {
+        signin_code: 'get_code',
+      }, function(result) {
+        if(result['status'] == 'ok'){
+          $('#error').html('');
+        }
+        else{
+          $('#error').html('获取验证码错误');
+        }
+      });
+  }
+  </script>
+
+</head>
+<body>
+  <div class="swiper-container">
+    <form method="POST">
+     <div>
+       <label>手机号：</label>
+       <input type="text" name="phone_number">
+     </div>
+     <div>
+       <label>验证码：</label>
+       <input type="text" name="signin_code">
+       <button type="button" onclick="javascript:get_code();">发送验证码</button>
+     </div>
+     <button>注册</button>
+    </form>
+    <div class="error">
+    {% if error %}
+      {{ error }}
+    {% endif %}
+    </div>
+  </div>
+</body>
+</html>

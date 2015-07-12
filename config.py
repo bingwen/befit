@@ -1,11 +1,14 @@
 class Config(object):
     SECRET_KEY = 'your key'
-    DEBUG = False
+    DEBUG = True
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://vagrant:vagrant@localhost/befit'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://userquanmin:admin123456@localhost/quanmindb'
 
     SENTRY_DSN = ''
     DOMAIN = ''
+    WEIXIN_AK = 'wx7ca8bfd8ecc57ddf'
+    WEIXIN_SK = 'ae9b465ff9c2053aefce3da46c234486'
+    API_DOMIN = 'http://localhost:8090/api/v0.1/'
 
 
 class TestingConfig(Config):

@@ -1,11 +1,12 @@
 #-*- coding: utf-8 -*-
-from flask import url_for, redirect, request, g
+from flask import url_for, redirect, request, g, session
 from flask.ext.login import LoginManager, current_user, login_user
 
 from factory import create_app
 from urls import register_blueprint
 from config import config_object
 
+from models.user import User
 
 app = create_app(config_object)
 
@@ -18,44 +19,54 @@ login_manager.login_view = "user.login"
 
 @login_manager.user_loader
 def load_user(userid):
-    from models.info import Info
-    return Info.get_by_weixin(userid) or None
+    return User.get_by_id(userid) or None
 
 
 @app.before_request
 def request_user():
     if current_user and current_user.is_authenticated():
-        g.info = current_user
+        g.user = current_user
+    elif request.path.startswith(u'/user/signin') or request.path.startswith(u'/static/'):
+        pass
+    elif request.remote_addr == '127.0.0.1':
+        g.user = User.get_by_id('local_test')
+        login_user(g.user)
+        # return redirect(url_for("user.figure", next=request.url))
     else:
-        if request.path.startswith(u'/m/u/') or request.path.startswith(u'/static/') or request.path.startswith(u'/admin'):
-            pass
-        else:
-            code = request.values.get('code')
-            if code:
-                from models.info import Info
-                from libs.weixin import get_weixin_user_openid
-                openid = get_weixin_user_openid(code)
-                if openid:
-                    info = Info.get_by_weixin(openid)
-                    if not info:
-                        info = Info.add(openid)
-                    login_user(info)
-                    g.info = info
+        code = request.values.get('code')
+        if code:
+            from libs.weixin import get_weixin_user_identification
+            identification = get_weixin_user_identification(code)
+            if identification:
+                session['identification'] = identification
+                if request.path.startswith(u'/user/address'):
+                    pass
                 else:
-                    return u"微信登录失败啦"
+                    user = User.get_by_id(session['identification']['openid'])
+                    if not user:
+                        return redirect(url_for("user.signin", next=request.url))
+                    login_user(user)
+                    g.user = user
             else:
-                from libs.weixin import get_weixin_login_url
-                login_url = get_weixin_login_url(request.url)
-                return redirect(login_url)
+                return u"微信登录失败啦"
+        else:
+            from libs.weixin import get_weixin_login_url
+            login_url = get_weixin_login_url(request.url)
+            return redirect(login_url)
 
 
 @app.route('/')
 def index():
     return redirect(url_for("main.index"))
 
+
+@app.route('/figure')
+def figure():
+    return redirect(url_for("user.figure"))
+
 # urls
 register_blueprint(app)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8008)
+    app.run(host='0.0.0.0', port=8080)

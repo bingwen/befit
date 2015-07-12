@@ -1,0 +1,135 @@
+body {
+    background: #c8c8c8;
+}
+
+#inner-box {
+    /*for debugging*/
+    /*background: deepskyblue;*/
+    /*border-bottom: 1px  solid;*/
+    border: 1px solid;
+
+    /*width: 100%; 这样搞无论margin还是padding都会弄出屏幕的…… 注意width/height的语义。*/
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    /*……一种超定。TODO*/
+
+    /* need to minus padding/border */
+    /*height: 1576px;*/
+    /*TODO 还是应该算出来啊！*/
+    height: 1506px;
+
+    padding-top: 4.7%;
+
+    /*TODO bottom 到底怎么整？窝很困惑！*/
+}
+
+#mobile-box {
+    width: 100%;
+    height: 150px;
+    background: white;
+    margin-top: 50px;
+    /*padding-top: 50px;*/
+    border-radius: 15px;
+}
+
+#mobile-box label, #mobile-box input, #code-box label, #code-box input, #send-code {
+    /*TODO GET 超好！这个100让这些标签什么的垂直居中了…… 而且看起来很自动化…… 好傻逼的习得途径 2015-07-04 14:20:05*/
+    height: 100%;
+    font-size: 40px;
+    /*让input框不会多出来一点边*/
+    border: 0px;
+    padding: 0px;
+}
+
+#mobile-box label {
+    margin-left: 30px;
+}
+
+#mobile {
+    width: 60%;
+    background: white;
+    border: 0px;
+}
+
+#mobile-box img {
+    /*用这个来缩放…… */
+    height: 45%;
+    margin-right: 25px;
+    float: right;
+
+}
+
+#code-box {
+    width: 100%;
+    height: 150px;
+    margin-top: 40px;
+}
+
+#code-input-box {
+    width: 65%;
+    height: 100%;
+    background: white;
+    float: left;
+
+    border-radius: 15px;
+}
+
+#code-input-box label {
+    margin-left: 30px;
+}
+
+#code {
+    width: 50%;
+    background: white;
+    border: 0px;
+
+}
+
+#code-button-box {
+    height: 100%;
+    width: 35%;
+    text-align: right;
+    float: right;
+
+}
+
+#send-code {
+    height: 90%;
+    /*FML TODO*/
+    margin-top: 5px;
+    margin-left: 30px;
+
+    background: white;
+    color: black;
+    border-radius: 15px;
+
+    /*从button换成div之后的改动 2015-07-04 13:25:54*/
+    text-align: center;
+    line-height: 100%;
+
+}
+
+#send-code span {
+
+}
+
+#register-box {
+    width: 100%;
+    height: 150px;
+    margin-top: 80px;
+}
+
+#register {
+    width: 100%;
+    height: 100%;
+    background: black;
+    font-size: 60px;
+    color: white;
+    border-radius: 15px;
+}
+
+#error{
+    color: red;
+    font-size: 48px;
+}

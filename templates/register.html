@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}注册-全民限定{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/register.css"/>
+{%endblock%}
+
+{%block content%}
+<div id="inner-box">
+
+    <form action="#" method="post">
+        <!-- TODO UE：验证码不记忆，若为纯数字则默认数字键盘；手机号记忆（type=tel即可吗？）-->
+        <div id="mobile-box">
+            <label for="mobile">手机号：</label>
+            <input type="tel" name="phone_number" id="mobile" placeholder="请输入正确的11位手机号码" value={{ph_number}}>
+            <img src="/static/res/people.png">
+            <!--<div class="clear-fix"></div>-->
+        </div>
+
+        <div id="code-box">
+            <div id="code-input-box">
+                <label for="code">验证码：</label><input type="tel" name="signin_code" id="code" placeholder="请输入验证码">
+            </div>
+            <div id="code-button-box">
+                <div id="send-code">
+                    <!--<span>发送验证码</span>-->
+                    发送验证码
+                </div>
+            </div>
+        </div>
+
+        <div id="register-box">
+            <input type="submit" value="注册" id="register">
+        </div>
+
+    </form>
+
+</div>
+{%endblock%}
+
+{%block js%}
+<script src="/static/js/register.js"></script>
+{%endblock%}

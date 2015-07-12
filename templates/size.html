@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}身材尺码-全民限定{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/size.css"/>
+{% endblock %}
+
+{% block content %}
+<div id="inner-box">
+    <!-- h1 -->
+    <div id="display">
+        <!-- h11 -->
+        <div id="display-number">
+            <div id="value-number">42</div>
+            <div id="value-unit">ml</div>
+            <!--<div id="building">施工中&gt;_&lt;<br/>2015-07-07<br/>13:43:45</div>-->
+            <div class="clear-fix"></div>
+        </div>
+        <!-- h12 -->
+        <div id="display-power-box">
+            <div id="display-power">Powered by 求合身</div>
+            <!--Powered by 求合身-->
+        </div>
+    </div>
+
+    <!-- h2 -->
+    <div id="ruler">
+        <div id="ruler-img-box">
+            <img src="/static/res/ruler.png">
+        </div>
+        <div id="slider-input-box">
+            <label>
+                <!-- data-* is good. http://www.vaikan.com/html-5-data-attributes-how-to-use-them-and-why/ -->
+                <!-- todo 这个value好像没有用？-->
+                <input id="slider-input" data-current-item-id="这里的一切都要改" type="range" min="100" max="200"
+                       value="161.8"/>
+            </label>
+        </div>
+    </div>
+
+    <!-- h3 -->
+    <div id="control-box">
+        <div id="control-box-content">
+            <!-- w2 -->
+            <div id="minus-box">
+                <!--<div id="minus-figure"></div>-->
+                <button id="minus-button"></button>
+            </div>
+            <!-- 100-2*w2 -->
+            <div id="current-item">身高 (0-190)</div>
+            <!-- w2 -->
+            <div id="plus-box">
+                <button id="plus-button"></button>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+
+    <!-- h4 -->
+    <div id="options">
+        <!-- 一个想法：class="option-clickable" 然后点击动作设置给这个类。 -->
+        <div class="options-row">
+            <div class="option-col">
+                <div class="option">
+                    <!--<span class="option-button" data-item-id="0">1</span>-->
+                    <span class="option-touchable" data-item-id="0" data-selected="0"></span>
+                    <span class="option-description" data-item-id="0" data-selected="0"><span>身高&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+
+                    <!-- float your sister-->
+                    <div class="clear-fix"></div>
+                </div>
+            </div>
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="1">胸</button>-->
+                    <span class="option-touchable" data-item-id="1" data-selected="0"></span>
+                    <span class="option-description" data-item-id="1" data-selected="0"><span>胸围&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="options-row">
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="2">颈</button>-->
+                    <span class="option-touchable" data-item-id="2" data-selected="0"></span>
+                    <span class="option-description" data-item-id="2" data-selected="0"><span>颈围&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="3">臀</button>-->
+                    <span class="option-touchable" data-item-id="3" data-selected="0"></span>
+                    <span class="option-description" data-item-id="3" data-selected="0"><span>臀围&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="options-row">
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="4">腰</button>-->
+                    <span class="option-touchable" data-item-id="4" data-selected="1"></span>
+                    <span class="option-description" data-item-id="4" data-selected="1"><span>腰围&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="5">大</button>-->
+                    <span class="option-touchable" data-item-id="5" data-selected="0"></span>
+                    <span class="option-description" data-item-id="5" data-selected="0"><span>大腿围&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="options-row">
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="6">上</button>-->
+                    <span class="option-touchable" data-item-id="6" data-selected="0"></span>
+                    <span class="option-description" data-item-id="6" data-selected="0"><span>上臂围&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="7">臂</button>-->
+                    <span class="option-touchable" data-item-id="7" data-selected="0"></span>
+                    <span class="option-description" data-item-id="7" data-selected="0"><span>臂长&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="options-row">
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="8">腿</button>-->
+                    <span class="option-touchable" data-item-id="8" data-selected="0"></span>
+                    <span class="option-description" data-item-id="8" data-selected="0"><span>腿长&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="option-col">
+                <div class="option">
+                    <!--<button data-item-id="9">肩</button>-->
+                    <span class="option-touchable" data-item-id="9" data-selected="0"></span>
+                    <span class="option-description" data-item-id="9" data-selected="0"><span>肩宽&nbsp</span><span
+                            class="option-value">321</span><span>cm</span></span>
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+
+    <!-- h5 -->
+    <div id="submit-box">
+        <!--<button id="submit"></button>-->
+        <form id="form-of-data"  method="post">
+            <!-- 准备 flask 后端处理。后端只发来这10个数据。-->
+            <!-- TODO 默认值 的配置 怎样处理？还是蛮哲学的。可以先不做得太通用（而是把 值 写到 直觉上最该出现的位置），而是小阶段完工时在文档里写清楚 该修改哪里。（也许到时就有兴致重构）-->
+            <input data-item-id='0' name='height' value="{{figure.height}}" hidden>
+            <input data-item-id='1' name='chest' value="{{figure.chest}}" hidden>
+            <input data-item-id='2' name='neck' value="{{figure.neck}}" hidden>
+            <input data-item-id='3' name='butt' value="{{figure.butt}}" hidden>
+            <input data-item-id='4' name='waist' value="{{figure.waist}}" hidden>
+            <input data-item-id='5' name='leg_width' value="{{figure.leg_width}}" hidden>
+            <input data-item-id='6' name='arm_width' value="{{figure.arm_width}}" hidden>
+            <input data-item-id='7' name='arm_length' value="{{figure.arm_length}}" hidden>
+            <input data-item-id='8' name='leg_length' value="{{figure.leg_length}}" hidden>
+            <input data-item-id='9' name='shoulder' value="{{figure.shoulder}}" hidden>
+            <!-- 纯前端测试。-->
+            <!--<input data-item-id='0' name='height' value="80" hidden>-->
+            <!--<input data-item-id='1' name='chest' value="81" hidden>-->
+            <!--<input data-item-id='2' name='neck' value="82" hidden>-->
+            <!--<input data-item-id='3' name='butt' value="83" hidden>-->
+            <!--<input data-item-id='4' name='waist' value="84" hidden>-->
+            <!--<input data-item-id='5' name='leg_width' value="85" hidden>-->
+            <!--<input data-item-id='6' name='arm_width' value="86" hidden>-->
+            <!--<input data-item-id='7' name='arm_length' value="87" hidden>-->
+            <!--<input data-item-id='8' name='leg_length' value="88" hidden>-->
+            <!--<input data-item-id='9' name='shoulder' value="89" hidden>-->
+
+            <input type="button" id="submit" value="">
+        </form>       
+    </div>
+    <button onclick="javascript:window.close();">关闭 window.close();</button>
+    <button onclick="javascript:history.back();">返回 history.back();</button>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/static/js/size.js"></script>
+{%endblock%}

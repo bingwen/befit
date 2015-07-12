@@ -1,0 +1,416 @@
+/*临时区*/
+
+#building {
+    font-size: 2em;
+    float: right;
+    padding-top: 30px;
+    -ms-transform: rotate(30deg); /* IE 9 */
+    -moz-transform: rotate(30deg); /* Firefox */
+    -webkit-transform: rotate(30deg); /* Safari and Chrome */
+    -o-transform: rotate(30deg); /* Opera */
+    transform: rotate(30deg);
+}
+
+/*
+http://www.w3school.com.cn/cssref/pr_padding.asp 但愿各处统一……
+上、右、下、左。
+上、右左、下。
+上下、右左。
+上右下左。
+也可宽的来一个，然后单独设定某个窄的。如 p {border-style: solid; border-left-style: none;}
+*/
+
+body {
+    background: #eceaeb;
+}
+
+#inner-box {
+    /*for debugging*/
+    /*background: deepskyblue;*/
+    /*border-bottom: 1px  solid;*/
+    /*border-top: 1px solid;*/
+
+    /*width: 100%; 这样搞无论margin还是padding都会弄出屏幕的…… 注意width/height的语义。*/
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    /*……一种超定。TODO*/
+
+    /* need to minus padding/border */
+    /*height: 1576px;*/
+    /*TODO 还是应该算出来啊！*/
+    height: 1506px;
+
+    padding-top: 4.7%;
+
+    /*TODO bottom 到底怎么整？窝很困惑！*/
+}
+
+#display {
+    width: 100%;
+    height: 27%;
+
+}
+
+#display-number {
+    width: 100%;
+    /*h11*/
+    height: 72.4%;
+}
+
+#value-number {
+    /*TODO 555 don't know*/
+    font-size: 21em;
+    /*TODO 怎样 完全消除行间距段间距，只要顶格的数字？*/
+    line-height: 100%;
+    float: left;
+    /*tuning*/
+    padding-left: 30px;
+}
+
+#value-unit {
+    /*TODO 555*/
+    font-size: 4em;
+    /*TODO 怎么搞到上面去…… aka 垂直对齐*/
+    float: left;
+}
+
+#display-power-box {
+    width: 100%;
+    /*h12*/
+    height: 19%;
+    /*TODO 垂直对齐+1*/
+    text-align: right;
+    float: left;
+    /*vertical-align: middle;*/
+
+    /*debug*/
+    /*background: orangered;*/
+}
+
+#display-power {
+    /*padding-top: 80%;*/
+    /*height: 100%;*/
+    /*padding-top: 50%;*/
+    /*padding-bottom: 0%;*/
+    /*vertical-align: middle;*/
+
+    /*2015-06-19 14:59:11 字高18px……fml TODO*/
+    font-size: 24px;
+    color: #848080;
+    padding-top: 30px;
+}
+
+#ruler {
+    /**yi…………TODO*/
+    width: 100%;
+    /*h2*/
+    height: 10.1%;
+}
+
+#ruler-img-box {
+    width: 100%;
+    /*h21*/
+    height: 48%;
+}
+
+#ruler-img-box img {
+    width: 100%;
+}
+
+#slider-input-box {
+    width: 100%;
+    /*有必要。*/
+    height: 52%;
+
+    /*debug*/
+    /*background: orangered;*/
+}
+
+#slider-input {
+    width: 100%;
+}
+
+/*定制滑轨滑块样式 via http://www.w3cplus.com/html5/styling-cross-browser-compatible-range-inputs-css.html*/
+
+/*我们需要给range input添加几个样式来覆盖所有浏览器的默认外观。*/
+
+input[type=range] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 100%; /* Specific width is required for Firefox. */
+    /*清空。默认有2px margin？ 2015-06-19 16:31:12*/
+    margin: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+    outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent; /* Hides the slider so custom styles can be added */
+    border-color: transparent;
+    color: transparent;
+}
+
+/*那个被点击或者沿轨道拖动的小组件叫作滑块。它可以像常规的HTML元素一样被添加样式。*/
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /*border: 1px solid #000000;*/
+    border: 0px;
+    /*height: 36px;*/
+    /*width: 16px;*/
+    height: 77px;
+    width: 72px;
+    /*background: #ffffff;*/
+    background: url("/static/res/knob.png") no-repeat;
+    background-size: 100%;
+    /*border-radius: 3px;*/
+    cursor: pointer;
+    margin-top: -25px;
+    /*TODO 太诡异了 @TUNING @CASCADE 换图之后这个数也得变。
+       You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+
+    /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /!* Add cool effects to your sliders! *!/*/
+}
+
+/* All the same stuff for Firefox TODO not tested 2015-06-19*/
+input[type=range]::-moz-range-thumb {
+    /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+    /*border: 1px solid #000000;*/
+    border: 0px;
+    /*height: 36px;*/
+    /*width: 16px;*/
+    height: 77px;
+    width: 72px;
+    /*background: #ffffff;*/
+    background: url("/static/res/knob.png") no-repeat;
+    background-size: 100%;
+    /*border-radius: 3px;*/
+    cursor: pointer;
+}
+
+/* All the same stuff for IE TODO not tested 2015-06-19*/
+input[type=range]::-ms-thumb {
+    /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+    /*border: 1px solid #000000;*/
+    border: 0px;
+    /*height: 36px;*/
+    /*width: 16px;*/
+    height: 77px;
+    width: 72px;
+    /*background: #ffffff;*/
+    background: url("/static/res/knob.png") no-repeat;
+    background-size: 100%;
+    /*border-radius: 3px;*/
+    cursor: pointer;
+}
+
+/*另一个需要注意的事情是你应该重点关注轨道，它在用户和range进行交互时会发生改变。*/
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 24px;
+    /*what?*/
+    cursor: pointer;
+    /*box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;*/
+    /*background: #3071a9;*/
+    background: url("/static/res/track.png") no-repeat;
+    background-size: 100% 100%;
+
+    /*border-radius: 1.3px;*/
+    /*border: 0.2px solid #010101;*/
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+}
+
+/*end of 定制滑轨滑块样式 */
+
+#control-box {
+    width: 100%;
+    /*TODO 好像并未真正发挥作用……*/
+    height: 10%;
+
+    /*debug*/
+    /*background-color: orchid;*/
+}
+
+#control-box-content {
+    /*FML TODO*/
+    /*tuning*/
+    padding-top: 0px;
+}
+
+#minus-box, #plus-box {
+    float: left;
+    width: 25%;
+    height: 100%;
+    /*height: 100%;*/
+    text-align: center;
+
+}
+
+#current-item {
+    float: left;
+    width: 50%;
+    text-align: center;
+    font-size: 60px;
+}
+
+#minus-figure {
+    background: url("/static/res/button-.png");
+
+}
+
+#minus-button, #plus-button {
+    border: 0px;
+    height: 125px;
+    width: 182px;
+}
+
+#plus-button {
+    background: url("/static/res/button+.png");
+    /** i don't know why ROUND...2015-06-21 22:39:13 TODO*/
+    background-repeat: round;
+}
+
+#minus-button {
+    background: url("/static/res/button-.png");
+    background-repeat: round;
+}
+
+#options {
+    height: 45%;
+    /*text-align: center;*/
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.options-row {
+    width: 100%;
+    height: 20%;
+    float: left;
+}
+
+.option-col {
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: left;
+}
+
+.option {
+    height: 100%;
+    /*vertical-align: middle;*/
+}
+
+/*#options button {*/
+/*font-size: 40px;*/
+/*/!*height: 2em;*!/*/
+/*/!*width: 1em;*!/*/
+/*float: left;*/
+/*}*/
+
+.option-touchable {
+    float: left;
+    /*height: 100%;*/
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin-left: 20px;
+    margin-right: 25px;
+
+    /*/!*width: := height... let javascript be.*!/*/
+    background: url("/static/res/button.png");
+
+    /*提示：TODO 您需要把 background-attachment 属性设置为 "fixed"，才能保证该属性(background-position)在 Firefox 和 Opera 中正常工作。
+    http://www.w3school.com.cn/cssref/pr_background-position.asp */
+    /*background-attachment: fixed;*/
+
+    /*background-position: x y let js be. ;*/
+    /*vertical-align: middle;*/
+
+    /*img clip go to hell*/
+    /*First thing you should note: the clip property only works on elements with position: absolute or position: fixed. It won’t work with relative or static positioning.
+    http://tympanus.net/codrops/2013/01/16/understanding-the-css-clip-property/*/
+    /*position: fixed;*/
+    /*clip: rect(0px,119px,119px,0px);*/
+
+}
+
+.option-description {
+    height: 100%;
+    /*line-height: := height. via 杭 居中法。let js be.;*/
+    /*vertical-align: middle;*/
+    float: left;
+    color: #BEBEBE;
+}
+
+#options span {
+    font-size: 40px;
+    float: left;
+}
+
+#submit-box {
+    text-align: center;
+    /*horiz-align: center;*/
+}
+
+#submit {
+    border: 0px;
+    height: 95px;
+    width: 198px;
+    background: url("/static/res/button_ok.png");
+    background-repeat: round;
+}
