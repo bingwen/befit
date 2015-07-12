@@ -99,3 +99,14 @@ def address():
     data = 'accesstoken=' + session['identification']['user_token'] + '&appid=' + app.config['WEIXIN_AK'] + '&noncestr=12345&timestamp=' + time_ + '&url=' + request.url
     addrSign = hashlib.sha1(data).hexdigest()
     return tpl("address.html", appID=app.config['WEIXIN_AK'], addrSign=addrSign, data=data, time_=time_)
+
+
+@user_bp.route('/check_signin', methods=['GET'])
+def check_signin():
+    if 'identification' in session and User.get_by_id(session['identification']['openid']):
+        pass
+    elif User.get_by_id(g.user.weixin_id):
+        pass
+    else:
+        return jsonify({'status': '404'})
+    return jsonify({'status': '200'})
