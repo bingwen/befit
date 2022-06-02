@@ -18,7 +18,7 @@ blinker==1.4
 chardet==2.0.1
 colorama==0.2.5
 configobj==4.7.2
-html5lib==0.999
+html5lib==0.99999999
 iotop==0.6
 itsdangerous==0.24
 meld3==0.6.10
