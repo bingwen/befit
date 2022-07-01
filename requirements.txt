@@ -31,7 +31,7 @@ raven==5.1.1
 requests==2.2.1
 six==1.5.2
 ssh-import-id==3.21
-supervisor==3.0b2
+supervisor==3.0.1
 unicodecsv==0.14.1
 urllib3==1.7.1
 wheel==0.24.0
